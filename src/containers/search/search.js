@@ -4,18 +4,19 @@ import {connect} from 'react-redux';
 import * as actionTypes from '../../store/actions';
 
 class Search extends React.Component {
-  _onSubmit(e, id) {
-    e.preventDefault();
-    this.props.onEnterZip(id)
+  submitZip(event) {
+    event.preventDefault();
+    this.props.onEnterZip(event)
   }
   render() {
       return (
         <div>
-          <form onSubmit={(id) => this._onSubmit(id)}>
+          <form onSubmit={(event) => this.submitZip(event)}>
             <input 
             type="text" 
             placeholder="enter zip code"
-            id= 'input' />
+            id= 'zip'
+            ref={(input) => {this.zip = input;}} />
             <button type="submit">SEARCH</button>
           </form>
           <p>for demo purposes the zip code is 00000</p>
@@ -29,14 +30,17 @@ class Search extends React.Component {
   }
 }
 
-
+// const mapStateToProps = state => {
+//   return {
+//       zip: state.zip,
+//   }
+// }
 
 const mapDispatchToProps = dispatch => {
   return {
-
-      onEnterZip: (id) => dispatch({
+      onEnterZip: (event) => dispatch({
               type: actionTypes.SUBMIT_ZIP,
-              input: id
+              zip: event.target.zip.value
           }),
   }
 }

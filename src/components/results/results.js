@@ -5,7 +5,7 @@ class Results extends React.Component {
   render() {
     return (
       <div>
-        <div className="Pb">{this.props.Pb}
+        <div className="Pb">Lead: {this.props.Pb}
         </div>
       </div>
     );
