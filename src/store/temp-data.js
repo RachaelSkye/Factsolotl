@@ -7,25 +7,25 @@
       "11111",
       "22222"
     ],
-    "ccr-2019": {
+    "ccr": {
       "analytes": {
         "lead": {
           "range": '<0.001 - 0.008',
-          "avg-conc": 0.004,
+          "avgConc": 0.004,
           "units": "ppb",
           "MCL": 0.01,
-          "MCL-units": "ppb",
+          "MCLunits": "ppb",
           "MRL": 0.001,
-          "MRL-units": "ppb"
+          "MRLunits": "ppb"
         },
         "copper": {
           "range": '5.0 - 20.0',
-          "avg-conc": 10.0,
+          "avgConc": 10.0,
           "units": "ppb",
           "MCL": 0,
-          "MCL-units": "ppb",
+          "MCLunits": "ppb",
           "MRL": 0,
-          "MRL-units": "ppb"
+          "MRLunits": "ppb"
         }
       }
     }
