@@ -1,36 +1,42 @@
-import * as actionTypes from './actions';
-import * as data from './temp-data';
+import * as actionTypes from "./actions";
+import * as data from "./temp-data";
 
 const initialState = {
-  resultPb: '',
-  zip: '',
-  error: ''
-}
+  resultPb: ""
+};
 
 const reducer = (state = initialState, action) => {
-  const error = "This zip code didn't match any public water systems in our database."
-  
-  const resultPb  = data.pws.ccr.analytes.lead.avgConc + data.pws.ccr.analytes.lead.units
+  const error =
+    "This zip code didn't match any public water systems in our database.";
+
+  const resultPb =
+    data.pws.ccr.analytes.lead.avgConc + data.pws.ccr.analytes.lead.units;
+
   switch (action.type) {
+    
     case actionTypes.SUBMIT_ZIP:
-     
-      for (let i = 0; i <= data.pws.zip.length; i++)
-      if (action.zip == data.pws.zip[i]) {
-        return {
-          ...state,
-          resultPb: resultPb
-        } 
+      for (let i = 0; i < data.pws.zip.length; i++) {
+        var z = data.pws.zip[i]
+        console.log(i);
+       
+        if (action.zip === z) {
+          return {
+            ...state,
+            resultPb: resultPb
+          };
         } else {
-          console.log(action.zip)
           return {
             ...state,
             resultPb: error
-          }
+          };
+        }
       }
-      
-     
+        
+      break;
+    default:
+      return state;
   }
   return state;
-}
+};
 
 export default reducer;

@@ -2,6 +2,7 @@ import React from "react";
 import Results from "../../components/results/results";
 import {connect} from 'react-redux';
 import * as actionTypes from '../../store/actions';
+import factsolotl from '../../factsolotl3.png';
 
 class Search extends React.Component {
   submitZip(event) {
@@ -11,6 +12,7 @@ class Search extends React.Component {
   render() {
       return (
         <div>
+          <img src={factsolotl} alt="A pink axolotl" />
           <form onSubmit={(event) => this.submitZip(event)}>
             <input 
             type="text" 
