@@ -1,13 +1,13 @@
 
 import React from 'react';
 import './App.css';
-import Search from './containers/search';
+import Results from './containers/results/results';
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <Search />
+        <Results />
       </header>
     </div>
   );
