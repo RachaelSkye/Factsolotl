@@ -2,7 +2,7 @@ import React from "react";
 import Results from "../../components/results/results";
 import {connect} from 'react-redux';
 import * as actionTypes from '../../store/actions';
-import factsolotl from '../../factsolotl3.png';
+import './search.css';
 
 class Search extends React.Component {
   submitZip(event) {
@@ -12,16 +12,15 @@ class Search extends React.Component {
   render() {
       return (
         <div>
-          <img src={factsolotl} alt="A pink axolotl" />
-          <form onSubmit={(event) => this.submitZip(event)}>
+          <form className="container" onSubmit={(event) => this.submitZip(event)}>
             <input 
             type="text" 
             placeholder="enter zip code"
             id= 'zip'
             ref={(input) => {this.zip = input;}} />
-            <button type="submit">SEARCH</button>
+            <button className="btn-floating btn-small waves-effect waves-light red lighten-1"type="submit"><i className="large material-icons prefix">search</i></button>
           </form>
-          <p>for demo purposes the zip code is 00000</p>
+          <p>For demo purposes the zip code is 00000.</p>
           <h1>
             Results:
           </h1>
