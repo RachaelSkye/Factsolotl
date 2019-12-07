@@ -9,7 +9,6 @@ class Search extends React.Component {
     this.props.onEnterZip(id)
   }
   render() {
-   
       return (
         <div>
           <form onSubmit={(id) => this._onSubmit(id)}>
