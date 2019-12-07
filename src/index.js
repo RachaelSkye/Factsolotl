@@ -11,10 +11,16 @@ import reducer from './store/reducer';
 
 const store = createStore(reducer);
 
+let unsubscribe = store.subscribe(() =>
+  console.log(store.getState())
+)
+
 ReactDOM.render(
     <Provider store={store}>
         <App />
     </Provider>,
     document.getElementById('root'));
+    
+    
 
 serviceWorker.unregister();

@@ -10,7 +10,7 @@
     "ccr": {
       "analytes": {
         "lead": {
-          "range": '<0.001 - 0.008',
+          "range": "<0.001 - 0.008",
           "avgConc": 0.004,
           "units": "ppb",
           "MCL": 0.01,
@@ -19,7 +19,7 @@
           "MRLunits": "ppb"
         },
         "copper": {
-          "range": '5.0 - 20.0',
+          "range": "5.0 - 20.0",
           "avgConc": 10.0,
           "units": "ppb",
           "MCL": 0,
