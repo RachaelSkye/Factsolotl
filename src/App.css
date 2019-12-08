@@ -1,23 +1,18 @@
 .App {
   text-align: center;
+  z-index: 1000;
 }
 
-@media (prefers-reduced-motion: no-preference) {
+/* @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
   }
-}
-.bubbles {
-  background: url('./img/factsolotlBubbles.png');
-  z-index: 1000;
-  background-size: cover;
-  background-repeat: repeat-y;
+} */
+
+.App-logo {
+  max-width: 30vh;
 }
 
-img {
-  max-width: 30vh;
-  
-}
 .App-header {
   min-height: 100vh;
   display: flex;
@@ -28,15 +23,32 @@ img {
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
+/* 
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
   }
   to {
     transform: rotate(360deg);
+  }
+} */
+
+
+.sliding-background {
+  background: url('./img/factsolotlBubbles.png')
+  repeat-y;
+  width: 2000px;
+  height: 5076px;
+  animation: slide 60s linear infinite;
+  position: absolute;
+  z-index: -1;
+}
+
+@keyframes slide{
+  0%{
+    transform: translate3d(0, 0, 0);
+  }
+  100%{
+    transform: translate3d(0, -1692px, 0);
   }
 }
