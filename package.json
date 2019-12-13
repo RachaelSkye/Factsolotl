@@ -2,6 +2,7 @@
   "name": "factsolotl",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://rbouissey.github.io/Factsolotl/",
   "dependencies": {
     "@babel/core": "7.7.4",
     "@svgr/webpack": "4.3.3",
@@ -65,6 +66,8 @@
   },
   "scripts": {
     "start": "node scripts/start.js",
+    "predeploy": "yarn run build",
+   "deploy": "gh-pages -d build",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js"
   },
@@ -84,6 +87,7 @@
     ]
   },
   "devDependencies": {
+    "deploy-to-git": "^0.1.5",
     "url-loader": "^3.0.0"
   },
   "jest": {
