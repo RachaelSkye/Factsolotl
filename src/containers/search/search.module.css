@@ -1,0 +1,25 @@
+
+.search {
+  display: flex;
+  flex-flow: row;
+}
+
+.toggleSchool {
+  color: white;
+  font-weight: bolder;
+  text-shadow: 2px 2px black;
+}
+
+.footer {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 1rem;
+}
+
+
+
+
+
+

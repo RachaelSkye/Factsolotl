@@ -8,9 +8,6 @@ ul {
   flex-flow: row-reverse;
 }
 
-/* li {
-  float: right;
-} */
 
 li a {
   display: block;
@@ -28,4 +25,8 @@ li a:hover {
   max-width: 10vmax;
   float: left;
   position: absolute;
+}
+
+.nav {
+  height: 7vmax;
 }
