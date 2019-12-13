@@ -12,20 +12,20 @@ class Search extends React.Component {
     } else {
       // this.props.setCounty(event)
       // this.props.onCountyQuery(event)
-      alert('The county query is currently undergoing maintenance.');
+      alert('The county search is currently undergoing maintenance.');
     }  
   }
 
   render() {
-    const toggleSchool = this.props.schoolQuery ? classes.toggleSchool : ''
-    const toggleCounty = this.props.schoolQuery ? '' : classes.toggleSchool
-
+    const toggleSchool = this.props.schoolQuery ? classes.toggleSchool : classes.toggleCounty
+    const toggleCounty = this.props.schoolQuery ? classes.toggleCounty : classes.toggleSchool
+    const title = this.props.schoolQuery ? 'Search by school' : 'Search by county'
 
     return (
       <div className='footer'>
             <div className="card white">
               <div className="card-content grey-text">
-                <span className="card-title">Search by school or county</span>
+                <span className="card-title">{title}</span>
                 <form onSubmit={event => this.submitForm(event)}>
                   <input
                     type="text"
@@ -40,16 +40,13 @@ class Search extends React.Component {
                   <div className="card-action">
                     <div className="switch">
                       <label>
-                        <span className={toggleSchool}>School</span>
-                        <input type="checkbox" onClick={this.props.onToggleQuery} />
-                        <span className="lever"></span>
-                        <span className={toggleCounty}>County</span>
+                        <span onClick={this.props.onToggleQuery} className={toggleSchool}>School</span>
+                        <span onClick={this.props.onToggleQuery} className={toggleCounty}>County</span>
                       </label>
                       <button
                         id='search'
                         className="btn waves-effect waves-light grey"
-                        type="submit"
-                      >
+                        type="submit">
                         <i className="large material-icons prefix">search</i>
                       </button>
                     </div>

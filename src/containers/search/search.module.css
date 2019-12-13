@@ -13,6 +13,10 @@ button {
   box-shadow: 2px 2px grey;
 }
 
+.toggleCounty {
+  padding: 20px;
+}
+
 .footer {
   /* position: absolute; */
   right: 0;
@@ -20,6 +24,7 @@ button {
   left: 0;
   padding: 1rem;
 }
+
 
 
 
