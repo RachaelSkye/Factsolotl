@@ -2,8 +2,8 @@ import React from "react";
 import { connect } from "react-redux";
 import "./details.css";
 
-class Details extends React.Component {
-  render() {
+const Details = () => {
+  
     return (
       <div>
         <div className="row">
@@ -11,15 +11,10 @@ class Details extends React.Component {
             <div className="card">
               <div className="card-image">
                 <div className="details">
-                <button id='expand'
-                  className="btn btn waves-effect waves-dark white">
-                  <i id='chevron' className="material-icons">chevron_right</i>
-                </button>
-                  <h5>{this.props.name}</h5>
-                  {/* <p>School District: {this.props.district}</p>
+                  <p>School District: {this.props.district}</p>
                   <p>
                     Lead: {this.props.conc} {this.props.units}
-                  </p>       */}
+                  </p>      
                 </div>             
               </div>
             </div>
@@ -27,7 +22,7 @@ class Details extends React.Component {
         </div>
       </div>
     );
-  }
+  
 }
 
 const mapStateToProps = state => {

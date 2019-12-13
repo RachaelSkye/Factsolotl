@@ -1,5 +1,4 @@
 import React from "react";
-import factsolotl from "../../img/factsolotl.png";
 import * as classes from "./navbar.module.css";
 import Logo from '../Logo/Logo';
 

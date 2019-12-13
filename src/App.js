@@ -2,10 +2,12 @@
 import React from 'react';
 import './App.css';
 import Search from './containers/search/search';
-import Details from './containers/details/details';
-import List from './containers/List/List';
+// import Details from './containers/details/details';
+// import List from './containers/List/List';
+import Preview from './containers/preview/preview';
 import Nav from './components/navbar/navbar';
 import { connect } from "react-redux";
+import ViewControl from './containers/viewControl/viewControl';
 
 
 
@@ -28,24 +30,26 @@ class App extends React.Component {
         <div className="App">
           <div className="sliding-background"></div>
           <Nav/>
-          <Details />
-          <div className='footer'>
-          <Search />
-          </div>
-        </div>
-      );
-    } else if (this.props.queried && !this.props.schoolQuery) {
-      return (
-        <div className="App">
-          <div className="sliding-background"></div>
-          <Nav/>
-          <List />
+          <ViewControl />
           <div className='footer'>
           <Search />
           </div>
         </div>
       );
     } 
+    
+    // else if (this.props.queried && !this.props.schoolQuery) {
+    //   return (
+    //     <div className="App">
+    //       <div className="sliding-background"></div>
+    //       <Nav/>
+    //       <List />
+    //       <div className='footer'>
+    //       <Search />
+    //       </div>
+    //     </div>
+    //   );
+    // } 
   }
 }
   

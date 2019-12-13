@@ -1,15 +1,21 @@
 import * as actionTypes from "./actions";
 import * as data from "./temp-data";
+import v4 from "uuid/v4";
 
 const initialState = {
-  name: "school",
-  district: "district",
-  county: "county",
-  conc: 0,
-  units: null,
+  currentSchoolId: 0,
   queried: false,
   schoolQuery: true,
-  schools: []
+
+  schools: [{
+    name: "school",
+    district: "district",
+    county: "county",
+    conc: 0,
+    units: null,
+    details: false,
+    schoolId: 0
+  }]
 };
 
 const reducer = (state = initialState, action) => {
@@ -25,15 +31,20 @@ const reducer = (state = initialState, action) => {
     case actionTypes.SUBMIT_SCHOOL_QUERY:
       const nameQuery = state.name;
       const countyQuery = state.county;
+      let schoolId = v4();
 
       if (name.includes(nameQuery)) {
         return {
           ...state,
-          name: name,
-          district: district,
-          county: county,
-          conc: conc,
-          units: units,
+          schools: [{
+            name: name,
+            district: district,
+            county: county,
+            conc: conc,
+            units: units,
+            schoolId: schoolId
+          }],
+
           schoolQuery: true,
           queried: true
         };
@@ -41,54 +52,60 @@ const reducer = (state = initialState, action) => {
         return {
           ...state,
           name: error,
-          schoolQuery: true,
+          schoolQuery: true
         };
       }
-    case actionTypes.SUBMIT_COUNTY_QUERY:
-      if (county.includes(countyQuery)) {
-        body.forEach(school => {
-          let details = {
-            ...state,
-            name: school.name,
-            district: school.district,
-            county: school.county,
-            conc: school.conc,
-            units: school.units,
-            schoolQuery: false,
-            queried: school.true
-          };
+      case actionTypes.SUBMIT_COUNTY_QUERY:
+        if (county.includes(countyQuery)) {
+          body.forEach(e => {
+            let school = {
+              name: e.name,
+              district: e.district,
+              county: e.county,
+              conc: e.conc,
+              units: e.units,
+              schoolId: e.schoolId
+            };
+            return {
+              ...state,
+              shools: state.schools.concat(school),
+              schoolQuery: false,
+              queried: true
+            };
+          });
+        } else {
           return {
             ...state,
-            shools: state.schools.concat(details)
+            name: error,
+            schoolQuery: false
           };
-        });
-      } else {
+        }
+        break;
+      case actionTypes.TOGGLE_QUERY_TYPE:
+        return {
+          schoolQuery: !state.schoolQuery
+        };
+
+      case actionTypes.SET_SCHOOL_QUERY:
+        let setSchool = action.query.toUpperCase();
+        return {
+          name: setSchool
+        };
+
+      case actionTypes.SET_COUNTY_QUERY:
+        let setCounty = action.query.toUpperCase();
+        return {
+          county: setCounty
+        };
+
+      case actionTypes.TOGGLE_DETAILS:
         return {
           ...state,
-          name: error,
-          schoolQuery: false,
+          details: !state.details
         };
-      }
-      break;
-    case actionTypes.TOGGLE_QUERY_TYPE:
-      return {
-        schoolQuery: !state.schoolQuery
-      };
 
-    case actionTypes.SET_SCHOOL_QUERY:
-      let setSchool = action.query.toUpperCase();
-      return {
-        name: setSchool
-      };
-
-    case actionTypes.SET_COUNTY_QUERY:
-      let setCounty = action.query.toUpperCase();
-      return {
-        county: setCounty
-      };
-
-    default:
-      return state;
+      default:
+        return state;
   }
 };
 

@@ -34,8 +34,7 @@ class Search extends React.Component {
                     id="query"
                     ref={input => {
                       this.query = input;
-                    }}
-                  />
+                    }}/>
 
                   <div className="card-action">
                     <div className="switch">
@@ -54,7 +53,6 @@ class Search extends React.Component {
                 </form>
               </div>
             </div>
-         
       </div>
     );
   }
@@ -83,23 +81,18 @@ const mapDispatchToProps = dispatch => {
       dispatch({
         type: actionTypes.TOGGLE_QUERY_TYPE,
       }),
-      setSchool: (event) =>
+      setSchool: event =>
       dispatch({
         type: actionTypes.SET_SCHOOL_QUERY,
         query: event.target.query.value
 
       }),
-      setCounty: (event) =>
+      setCounty: event =>
       dispatch({
         type: actionTypes.SET_COUNTY_QUERY,
         query: event.target.query.value
 
-      }),
-      // setQueryState: (event) =>
-      // dispatch({
-      //   type: actionTypes.SET_COUNTY_QUERY,
-      //   query: event.target.query.value
-      // })
+      })
   };
 };
 
