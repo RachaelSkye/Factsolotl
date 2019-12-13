@@ -11,7 +11,7 @@ class Search extends React.Component {
       this.props.onSchoolQuery(event)      
     } else {
       this.props.setCounty(event)
-      this.props.onCountyQuery(event)     
+      this.props.onCountyQuery(event)
     }  
   }
 
@@ -22,8 +22,8 @@ class Search extends React.Component {
 
     return (
       <div className='footer'>
-            <div className="card blue-grey darken-1">
-              <div className="card-content white-text">
+            <div className="card white">
+              <div className="card-content grey-text">
                 <span className="card-title">Search by school or county</span>
                 <form onSubmit={event => this.submitForm(event)}>
                   <input
@@ -46,7 +46,7 @@ class Search extends React.Component {
                       </label>
                       <button
                         id='search'
-                        className="btn waves-effect waves-light"
+                        className="btn waves-effect waves-light grey"
                         type="submit"
                       >
                         <i className="large material-icons prefix">search</i>

@@ -10,7 +10,14 @@ class List extends React.Component {
         <div className="row">
           <div className="col s12 m6">
             <div className="card">
-              <Details />
+              this.props.schools.map(school => 
+                <Details 
+                
+                
+                
+                />
+              )
+              
               {/* <div className="card-content">
                 <p>
                   I am a very simple card. I am good at containing small bits of

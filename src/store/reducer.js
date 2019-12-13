@@ -40,7 +40,8 @@ const reducer = (state = initialState, action) => {
       } else {
         return {
           ...state,
-          name: error
+          name: error,
+          schoolQuery: true,
         };
       }
     case actionTypes.SUBMIT_COUNTY_QUERY:
@@ -64,7 +65,8 @@ const reducer = (state = initialState, action) => {
       } else {
         return {
           ...state,
-          name: error
+          name: error,
+          schoolQuery: false,
         };
       }
       break;

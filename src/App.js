@@ -19,6 +19,7 @@ class App extends React.Component {
         <div className="sliding-background"></div>
         <Nav/>
         <Details />
+        <List/>
         <div className='footer'>
         <Search />
         </div>

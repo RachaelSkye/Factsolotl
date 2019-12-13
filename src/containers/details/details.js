@@ -12,10 +12,10 @@ class Details extends React.Component {
               <div className="card-image">
                 <div className="details">
                 <button id='expand'
-                  className="btn btn waves-effect waves-light teal lighten-2"
+                  className="btn btn waves-effect waves-dark white"
                   href="#"
                 >
-                  <i className="material-icons">chevron_right</i>
+                  <i id='chevron' className="material-icons">chevron_right</i>
                 </button>
                   <h2>{this.props.name}</h2>
                   <p>{this.props.district}</p>
