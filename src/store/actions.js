@@ -1,1 +1,1 @@
-export const SUBMIT_ZIP = 'SUBMIT_ZIP'
+export const SUBMIT_QUERY = 'SUBMIT_QUERY'

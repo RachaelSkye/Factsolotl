@@ -1,4 +1,9 @@
 
-input button {
-  background-attachment: fixed;
+.search {
+  display: flex;
+  flex-flow: row;
 }
+button {
+  margin-top: 1vmax;
+}
+

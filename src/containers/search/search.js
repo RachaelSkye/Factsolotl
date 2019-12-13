@@ -1,49 +1,48 @@
 import React from "react";
-import Results from "../results/results";
-import {connect} from 'react-redux';
-import * as actionTypes from '../../store/actions';
-import './search.css';
+import { connect } from "react-redux";
+import * as actionTypes from "../../store/actions";
+import "./search.css";
 
 class Search extends React.Component {
-  submitZip(event) {
+  submitForm(event) {
     event.preventDefault();
-    this.props.onEnterZip(event)
+    this.props.onQuery(event);
   }
   render() {
-      return (
-        <div className="container">
-          <form onSubmit={(event) => this.submitZip(event)}>
-            <input 
-            type="text" 
-            placeholder="enter zip code"
-            id= 'zip'
-            ref={(input) => {this.zip = input;}} />
-            <button className="btn-floating btn-small waves-effect waves-light red lighten-1"type="submit"><i className="large material-icons prefix">search</i></button>
-          </form>
-          <p>Enter your zip code to see contaminant info for your tap water. For demo purposes the zip code is 00000.</p>
-          <h1>
-            Results:
-          </h1>
-          <Results />
-        </div>
-      );
-    
+    return (
+      <div >
+        <form onSubmit={event => this.submitForm(event)}>
+          <div className="search">
+          <button
+            className="btn-floating btn-small waves-effect waves-light red lighten-1"
+            type="submit"
+          >
+            <i className="large material-icons prefix">search</i>
+          </button>
+          <input
+            type="text"
+            placeholder="enter school name"
+            id="query"
+            ref={input => {
+              this.query = input;
+            }}
+          />
+              
+          </div>
+        </form>
+      </div>
+    );
   }
 }
-
-// const mapStateToProps = state => {
-//   return {
-//       zip: state.zip,
-//   }
-// }
 
 const mapDispatchToProps = dispatch => {
   return {
-      onEnterZip: (event) => dispatch({
-              type: actionTypes.SUBMIT_ZIP,
-              zip: event.target.zip.value
-          }),
-  }
-}
+    onQuery: event =>
+      dispatch({
+        type: actionTypes.SUBMIT_QUERY,
+        query: event.target.query.value
+      })
+  };
+};
 
 export default connect(null, mapDispatchToProps)(Search);

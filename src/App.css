@@ -1,5 +1,5 @@
 .App {
-  text-align: center;
+  /* text-align: center; */
   z-index: 1000;
 }
 
@@ -10,11 +10,12 @@
 } */
 
 .App-logo {
-  max-width: 30vh;
+  max-width: 10vh;
+  float: left;
 }
 
 .App-header {
-  min-height: 100vh;
+  /* min-height: 100vh; */
   display: flex;
   flex-direction: column;
   align-items: center;

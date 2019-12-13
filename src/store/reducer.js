@@ -2,41 +2,44 @@ import * as actionTypes from "./actions";
 import * as data from "./temp-data";
 
 const initialState = {
-  resultPb: ""
+  name: '',
+  district: '',
+  conc: 0,
+  units: '',
+  queried: false
 };
 
 const reducer = (state = initialState, action) => {
   const error =
-    "This zip code didn't match any public water systems in our database.";
-
-  const resultPb =
-    data.pws.ccr.analytes.lead.avgConc + data.pws.ccr.analytes.lead.units;
+    "This school didn't match any entries in our database.";
+  let body = data.response.result.records
+  const name = body[0].school_name;
+  const district = body[0].district;
+  const conc = body[0].result;
+  const units = body[0].rpt_unit;
 
   switch (action.type) {
     
-    case actionTypes.SUBMIT_ZIP:
-      for (let i = 0; i < data.pws.zip.length; i++) {
-        var z = data.pws.zip[i]
-        console.log(i);
-       
-        if (action.zip === z) {
+    case actionTypes.SUBMIT_QUERY:
+
+        // if (action.query.includes(name)) {
           return {
             ...state,
-            resultPb: resultPb
+            name: name,
+            district: district,
+            conc: conc,
+            units: units,
+            queried: true
           };
-        } else {
-          return {
-            ...state,
-            resultPb: error
-          };
-        }
-      }
-        
-      break;
+        // } else {
+        //   return {
+        //     ...state,
+        //     name: error
+        //   };
+        // }
     default:
       return state;
   }
-  return state;
 };
 
 export default reducer;
