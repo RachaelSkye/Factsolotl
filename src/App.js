@@ -13,20 +13,39 @@ class App extends React.Component {
 
   
   render() {
-    
-    return (
-      <div className="App">
-        <div className="sliding-background"></div>
-        <Nav/>
-        <Details />
-        <List/>
-        <div className='footer'>
-        <Search />
+    if(!this.props.queried){
+      return (
+        <div className="App">
+          <div className="sliding-background"></div>
+          <Nav/>
+          <div className='footer'>
+          <Search />
+          </div>
         </div>
-      </div>
-    );
-  
-
+      );
+    } else if (this.props.queried && this.props.schoolQuery) {
+      return (
+        <div className="App">
+          <div className="sliding-background"></div>
+          <Nav/>
+          <Details />
+          <div className='footer'>
+          <Search />
+          </div>
+        </div>
+      );
+    } else if (this.props.queried && !this.props.schoolQuery) {
+      return (
+        <div className="App">
+          <div className="sliding-background"></div>
+          <Nav/>
+          <List />
+          <div className='footer'>
+          <Search />
+          </div>
+        </div>
+      );
+    } 
   }
 }
   

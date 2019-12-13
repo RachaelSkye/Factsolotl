@@ -10,8 +10,9 @@ class Search extends React.Component {
       this.props.setSchool(event)
       this.props.onSchoolQuery(event)      
     } else {
-      this.props.setCounty(event)
-      this.props.onCountyQuery(event)
+      // this.props.setCounty(event)
+      // this.props.onCountyQuery(event)
+      alert('The county query is currently undergoing maintenance.');
     }  
   }
 

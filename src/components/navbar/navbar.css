@@ -3,7 +3,7 @@ ul {
   margin: 0;
   padding: 0;
   overflow: hidden;
-  background-color: transparent;
+  background-color: rgb(255, 255, 255);
   display: flex;
   flex-flow: row-reverse;
 }
@@ -28,5 +28,8 @@ li a:hover {
 }
 
 .nav {
-  height: 7vmax;
+  height: 11vmax;
+  box-shadow: 2px 2px 20px  rgb(176, 211, 222);
+  background-color: rgb(255, 255, 255, 0.5);
+
 }

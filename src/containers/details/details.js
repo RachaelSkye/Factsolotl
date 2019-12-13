@@ -7,36 +7,24 @@ class Details extends React.Component {
     return (
       <div>
         <div className="row">
-          <div className="col s12 m6">
+          <div className="col s12 m4">
             <div className="card">
               <div className="card-image">
                 <div className="details">
                 <button id='expand'
-                  className="btn btn waves-effect waves-dark white"
-                  href="#"
-                >
+                  className="btn btn waves-effect waves-dark white">
                   <i id='chevron' className="material-icons">chevron_right</i>
                 </button>
-                  <h2>{this.props.name}</h2>
-                  <p>{this.props.district}</p>
+                  <h5>{this.props.name}</h5>
+                  {/* <p>School District: {this.props.district}</p>
                   <p>
                     Lead: {this.props.conc} {this.props.units}
-                  </p>      
-                </div>
-              
+                  </p>       */}
+                </div>             
               </div>
-              {/* <div className="card-content">
-                <p>
-                  I am a very simple card. I am good at containing small bits of
-                  information. I am convenient because I require little markup
-                  to use effectively.
-                </p>
-              </div> */}
             </div>
           </div>
         </div>
-
-
       </div>
     );
   }
