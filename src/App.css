@@ -38,8 +38,8 @@
 .sliding-background {
   background: url('./img/factsolotlBubbles.png')
   repeat-y;
-  width: 2000px;
-  height: 5076px;
+  width: 100%;
+  height: 300%;
   animation: slide 60s linear infinite;
   position: absolute;
   z-index: -1;
@@ -50,7 +50,7 @@
     transform: translate3d(0, 0, 0);
   }
   100%{
-    transform: translate3d(0, -1692px, 0);
+    transform: translate3d(0, -100%, 0);
   }
 }
 

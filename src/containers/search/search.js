@@ -45,6 +45,7 @@ class Search extends React.Component {
                         <span className={toggleCounty}>County</span>
                       </label>
                       <button
+                        id='search'
                         className="btn waves-effect waves-light"
                         type="submit"
                       >

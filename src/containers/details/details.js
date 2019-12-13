@@ -12,7 +12,7 @@ class Details extends React.Component {
               <div className="card-image">
                 <div className="details">
                 <button id='expand'
-                  className="btn halfway-fab waves-effect waves-light red"
+                  className="btn btn waves-effect waves-light teal lighten-2"
                   href="#"
                 >
                   <i className="material-icons">chevron_right</i>
@@ -21,11 +21,7 @@ class Details extends React.Component {
                   <p>{this.props.district}</p>
                   <p>
                     Lead: {this.props.conc} {this.props.units}
-                  </p>
-
-
- 
-              
+                  </p>      
                 </div>
               
               </div>
