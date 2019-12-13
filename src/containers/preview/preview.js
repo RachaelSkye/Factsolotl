@@ -5,7 +5,14 @@ import "./preview.module.css";
 
 
 class Preview extends React.Component {
+  
   render() {
+    
+    const selectSchool = (id) => {
+      id = this.props.schools.schoolId
+        this.props.onToggleDetails(id) 
+    }
+
     return (
       <div>
         <div className="row">
@@ -14,14 +21,14 @@ class Preview extends React.Component {
               <div className="card-image">
                 <div className="details">
                 <button 
-                  onClick={this.props.onToggleDetails}
+                  onClick={selectSchool}
 
                   id='expand'
                   className="btn btn waves-effect waves-dark white">
                   
                   <i id='chevron' className="material-icons">chevron_right</i>
                 </button>
-                  <h5>{this.props.name}</h5>
+                  <h5>{this.props.schools.name}</h5>
                 </div>             
               </div>
             </div>
@@ -34,19 +41,16 @@ class Preview extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    name: state.name,
-    district: state.district,
-    conc: state.conc,
-    units: state.units,
-    queried: state.queried,
+    schools: state.schools[0]
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    onToggleDetails: () =>
+    onToggleDetails: (id) =>
     dispatch({
       type: actionTypes.TOGGLE_DETAILS,
+      id: id
     })
   };
 };

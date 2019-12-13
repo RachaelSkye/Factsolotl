@@ -7,30 +7,31 @@ const initialState = {
   queried: false,
   schoolQuery: true,
 
-  schools: [{
+  schools: [
+    {
     name: "school",
     district: "district",
     county: "county",
     conc: 0,
     units: null,
-    details: false,
     schoolId: 0
-  }]
+  },
+]
 };
 
 const reducer = (state = initialState, action) => {
   const error = "This school didn't match any entries in our database.";
-  const body = data.response.result.records;
-  const name = body[0].school_name.toUpperCase();
-  const district = body[0].district.toUpperCase();
-  const conc = body[0].result;
-  const units = body[0].rpt_unit;
-  const county = body[0].school_county.toUpperCase();
+  let body = data.response.result.records;
+  let name = body[0].school_name.toUpperCase();
+  let district = body[0].district.toUpperCase();
+  let conc = body[0].result;
+  let units = body[0].rpt_unit;
+  let county = body[0].school_county.toUpperCase();
 
   switch (action.type) {
     case actionTypes.SUBMIT_SCHOOL_QUERY:
-      const nameQuery = state.name;
-      const countyQuery = state.county;
+      let nameQuery = state.name;
+      let countyQuery = state.county;
       let schoolId = v4();
 
       if (name.includes(nameQuery)) {
@@ -42,7 +43,8 @@ const reducer = (state = initialState, action) => {
             county: county,
             conc: conc,
             units: units,
-            schoolId: schoolId
+            schoolId: schoolId,
+            details: false
           }],
 
           schoolQuery: true,
@@ -51,7 +53,7 @@ const reducer = (state = initialState, action) => {
       } else {
         return {
           ...state,
-          name: error,
+          error: error,
           schoolQuery: true
         };
       }
@@ -76,7 +78,7 @@ const reducer = (state = initialState, action) => {
         } else {
           return {
             ...state,
-            name: error,
+            error: error,
             schoolQuery: false
           };
         }
@@ -101,7 +103,8 @@ const reducer = (state = initialState, action) => {
       case actionTypes.TOGGLE_DETAILS:
         return {
           ...state,
-          details: !state.details
+          currentSchoolId: action.id,
+          details: true
         };
 
       default:
