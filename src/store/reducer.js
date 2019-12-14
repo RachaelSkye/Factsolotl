@@ -30,32 +30,40 @@ const reducer = (state = initialState, action) => {
       let body = data.response.result.records;
       console.log(state.schools)
       for (let i = 0; i < body.length; i++) {
-        let _name = body[i].school_name.toUpperCase();
-        if (_name.includes(nameQuery)) {
+        let _name = body.find(body[i].school_name.toUpperCase() === nameQuery)
+        let _district = body.find(body[i].district.toUpperCase() === nameQuery)
+        let _conc = body.find(body[i].result.toUpperCase() === nameQuery)
+        let _units = body.find(body[i].rpt_unit.toUpperCase() === nameQuery)
+        let _county = body.find(body[i].school_county.toUpperCase() === nameQuery)
+        if(_name) {
           let newSchool = {
-            name: body[i].school_name,
-            district: body[i].district,
-            county: body[i].school_county,
-            conc: body[i].result,
-            units: body[i].rpt_unit,
+            name: _name,
+            district: _district,
+            county: _county,
+            conc: _conc,
+            units: _units,
             schoolId: newSchoolId,
             details: false
-          };
-          return {
-            ...state,
-            schools: [state.schools.concat(newSchool)],
-            schoolQuery: true,
-            queried: true
-          };
-        } else {
-          return {
-            ...state,
-            error: error,
-            schoolQuery: true
-          };
-        }
+          }
+        
+          
+          if(newSchool !== undefined){
+            return {
+              ...state,
+              schools: [state.schools.concat(newSchool)],
+              schoolQuery: true,
+              queried: true
+            };
+          }else {
+            return {
+              ...state,
+              error: error,
+              schoolQuery: true
+            };
+          }        
+        } 
       }
-      break;
+      
     // case actionTypes.SUBMIT_COUNTY_QUERY:
     //   if (county.includes(countyQuery)) {
     //     body.forEach(e => {
@@ -81,7 +89,7 @@ const reducer = (state = initialState, action) => {
     //       schoolQuery: false
     //     };
     //   }
-    //   break;
+      break;
     case actionTypes.TOGGLE_QUERY_TYPE:
       return {
         schoolQuery: !state.schoolQuery
@@ -90,7 +98,9 @@ const reducer = (state = initialState, action) => {
     case actionTypes.SET_SCHOOL_QUERY:
       let setSchool = action.query.toUpperCase();
       return {
-        name: setSchool
+       
+          name: setSchool
+        
       };
 
     case actionTypes.SET_COUNTY_QUERY:
@@ -115,5 +125,6 @@ const reducer = (state = initialState, action) => {
       return state;
   }
 };
+
 
 export default reducer;
