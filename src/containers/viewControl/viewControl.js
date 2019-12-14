@@ -11,13 +11,14 @@ class control extends React.Component {
     if(!this.props.details){
       return (
         <div>
-        <Preview />
+          <Preview />
         </div>
       );
     } else if (this.props.details) {
       return (
         <div>
-        <Details />
+          <Preview />
+          <Details />
         </div>
       );
     } 
