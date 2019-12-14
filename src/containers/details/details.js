@@ -24,10 +24,8 @@ const Details = () => {
           </div>
         </div>
       );
-    }
-    
+    } 
   }
-  
 }
 
 const mapStateToProps = state => {

@@ -30,31 +30,31 @@ const reducer = (state = initialState, action) => {
       let body = data.response.result.records;
       console.log(state.schools)
       for (let i = 0; i < body.length; i++) {
-        let _name = body.find(body[i].school_name.toUpperCase() === nameQuery)
-        let _district = body.find(body[i].district.toUpperCase() === nameQuery)
-        let _conc = body.find(body[i].result.toUpperCase() === nameQuery)
-        let _units = body.find(body[i].rpt_unit.toUpperCase() === nameQuery)
-        let _county = body.find(body[i].school_county.toUpperCase() === nameQuery)
+       
+        let _name = body.find(
+         e => 
+          e === nameQuery);
+        
         if(_name) {
           let newSchool = {
             name: _name,
-            district: _district,
-            county: _county,
-            conc: _conc,
-            units: _units,
+            // district: _district,
+            // county: _county,
+            // conc: _conc,
+            // units: _units,
             schoolId: newSchoolId,
             details: false
           }
         
           
-          if(newSchool !== undefined){
+          if(newSchool) {
             return {
               ...state,
               schools: [state.schools.concat(newSchool)],
               schoolQuery: true,
               queried: true
             };
-          }else {
+          } else {
             return {
               ...state,
               error: error,
@@ -98,9 +98,12 @@ const reducer = (state = initialState, action) => {
     case actionTypes.SET_SCHOOL_QUERY:
       let setSchool = action.query.toUpperCase();
       return {
-       
-          name: setSchool
-        
+        ...state,
+        school: [
+          {
+            name: setSchool
+          }
+        ]
       };
 
     case actionTypes.SET_COUNTY_QUERY:
