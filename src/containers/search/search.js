@@ -18,7 +18,8 @@ class Search extends Component {
     query3: "",
     exceedance: false,
     exceedanceCheck: false,
-    queried: false
+    queried: false,
+    total: 0
   };
 
   queryHandler(query1, query2, query3, state) {
@@ -49,6 +50,8 @@ class Search extends Component {
         .get(exceedanceQuery)
         .then(response => {
           const schools = response.data.result.records;
+          const total = response.data.result.total;
+
           if (schools.length === 0) {
             alert("No schools matched this search");
           }
@@ -61,7 +64,8 @@ class Search extends Component {
           this.setState({
             ...state,
             schools: newSchool,
-            queried: true
+            queried: true,
+            total: total
           });
         })
         .catch(error => {
@@ -79,6 +83,8 @@ class Search extends Component {
         )
         .then(response => {
           const schools = response.data.result.records;
+          const total = response.data.result.total;
+
           if (schools.length === 0) {
             alert("No schools matched this search");
           }
@@ -88,11 +94,13 @@ class Search extends Component {
               id: v4()
             };
           });
+
           this.setState({
             ...state,
             schools: newSchool,
             schoolQuery: true,
-            queried: true
+            queried: true,
+            total: total
           });
         })
         .catch(error => {
@@ -132,7 +140,7 @@ class Search extends Component {
     this.setState({
       ...state,
       query3: e.target.value
-    })
+    });
   }
 
   render() {
@@ -148,18 +156,26 @@ class Search extends Component {
 
     return (
       <div>
-        <Details
-          id={this.state.selectedSchoolId}
-          loadedSchool={this.state.loadedSchool}
-        />
-        <List
-          error={this.state.error}
-          schools={this.state.schools}
-          selectedSchoolId={this.state.selectedSchoolId}
-          onSchoolSelect={id => this.schoolDetailsHandler(id)}
-          loadedSchool={this.state.loadedSchool}
-          queried={this.state.queried}
-        />
+              <div className={classes.detailBox}>
+              <label>School details:</label>
+              <Details
+                id={this.state.selectedSchoolId}
+                loadedSchool={this.state.loadedSchool}
+              />
+              </div>
+          
+              <label>Schools matching search:</label>
+              <List
+                error={this.state.error}
+                schools={this.state.schools}
+                selectedSchoolId={this.state.selectedSchoolId}
+                onSchoolSelect={id => this.schoolDetailsHandler(id)}
+                loadedSchool={this.state.loadedSchool}
+                queried={this.state.queried}
+              />
+       
+
+        <label>Number of schools matching search: {this.state.total}</label>
 
         <div className="footer">
           <div className="card white">
@@ -172,13 +188,13 @@ class Search extends Component {
                 }}
               >
                 <div className={classes.select}>
-                  {/* <Select options={options} onChange={(values) => this.setValues(values)} /> */}
+                  <label>Filter by year: </label>
                   <select
                     className="browser-default"
                     value={this.state.query3}
-                    onChange={(e) => this.handleYearFilter(e)}
+                    onChange={e => this.handleYearFilter(e)}
                   >
-                    <option>ALL YEARS</option>
+                    <option value="">ALL YEARS</option>
                     <option value="2017">2017</option>
 
                     <option value="2018">2018</option>

@@ -24,7 +24,6 @@ button {
 .select {
   width: 15vmax;
   float: right;
-
 }
 
 .filters {
@@ -32,9 +31,10 @@ button {
   flex-wrap: nowrap;
 }
 
-
-.details {
+.detailBox {
   float: right;
+  width: 50%;
+  margin-right: 0;
 }
 
 

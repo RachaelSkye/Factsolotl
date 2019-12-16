@@ -1,29 +1,13 @@
-#expand {
-  position:absolute;
-  right: 0;
-  top: 0;
-  height: 100%;
-  border-top-left-radius: 0;
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
-  padding-left: 5px;
-}
-
-#chevron {
-  color: black;
-}
-
 
 .cardDetail {
   display: flexbox;
   flex-wrap: wrap;
   width: 50%;
   height:30vmax;
-  float: right;
   margin: 0;
   padding: 0;
   height:30vmax;
-  width:50%;
+  width:100%;
   border:1px solid #ccc;
   font:16px/26px Georgia, Garamond, Serif;overflow-y:auto;
   position: relative;
@@ -31,24 +15,5 @@
 }
 
 
-#slide:active {
-  position: absolute;
-  left: -100px;
-  width: 50%;
-  height:30vmax;
-  background: blue;
-  -webkit-animation: slide 0.5s forwards;
-  -webkit-animation-delay: 2s;
-  animation: slide 0.5s forwards;
-  animation-delay: 2s;
-
-  @-webkit-keyframes slide {
-    100% { left: 0; }
-  }
-  
-  @keyframes slide {
-    100% { left: 0; }
-  }
-}
 
 
