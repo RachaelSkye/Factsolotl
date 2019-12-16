@@ -26,8 +26,29 @@
   width:50%;
   border:1px solid #ccc;
   font:16px/26px Georgia, Garamond, Serif;overflow-y:auto;
-  /* padding-top: 5%;
-  margin-bottom: 75%; */
   position: relative;
   box-shadow: inset 0px 0px 20px 10px rgba(0,0,0,0.6);
 }
+
+
+#slide:active {
+  position: absolute;
+  left: -100px;
+  width: 50%;
+  height:30vmax;
+  background: blue;
+  -webkit-animation: slide 0.5s forwards;
+  -webkit-animation-delay: 2s;
+  animation: slide 0.5s forwards;
+  animation-delay: 2s;
+
+  @-webkit-keyframes slide {
+    100% { left: 0; }
+  }
+  
+  @keyframes slide {
+    100% { left: 0; }
+  }
+}
+
+

@@ -5,11 +5,9 @@ import "./Preview.css";
 const preview = (props) => {
 
   let exceedanceCheck;
-  let exceedance;
 
   if (props.exceedance === 'Yes') {
       exceedanceCheck = 'redBG pulse'
-      exceedance = 'Has exceedance'
   } else if (props.exceedance === 'No') {
       exceedanceCheck = 'greenBG'
   }
