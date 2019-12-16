@@ -3,7 +3,7 @@ import React from "react";
 import "./Preview.css";
 
 const preview = props => (
-  <div >
+  <div>
     <div className="row">
       <div className="col s12 m4">
         <div className="card">

@@ -7,7 +7,7 @@
 
 ## Description
 
-- The Factsolotl MVP is a search by zip code feature that will show a user lead concentrations from demo data.
+- The Factsolotl allows a user to search for lead contamination data in schools throughout California.
 
 ## Setup/Installation Requirements
 
@@ -16,7 +16,7 @@
   - npm i
   - npm start
 
-* View the project at the link provided in the terminal.
+* View the project at https://rbouissey.github.io/Factsolotl/ .
 
 ![Factsolotl](factsolotl-flow.png)
 

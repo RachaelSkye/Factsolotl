@@ -15,4 +15,10 @@
 
 .details {
   padding: 5px;
+  margin: 0;
+}
+.row {
+  display: flexbox;
+  margin: 0;
+  padding: 0;
 }

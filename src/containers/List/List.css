@@ -1,18 +1,5 @@
-#expand {
-  position:absolute;
-  right: 0;
-  top: 0;
-  height: 100%;
-  border-top-left-radius: 0;
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
-  padding-left: 5px;
-}
-
-#chevron {
-  color: black;
-}
-
-.details {
-  padding: 5px;
+.list {
+  margin: 0;
+  padding: 0;
+  
 }

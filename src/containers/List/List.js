@@ -19,11 +19,8 @@ const List = props => {
   }
 
   return (
-    <div>
+    <div className={'list'}>
       {schools}
-      <section>
-        
-      </section>
     </div>
   );
 };
