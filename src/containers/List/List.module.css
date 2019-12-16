@@ -2,8 +2,17 @@
   height:30vmax;
   width:50%;
   border:1px solid #ccc;
-  font:16px/26px Georgia, Garamond, Serif;overflow-y:auto;
-  /* padding-top: 5%;
-  margin-bottom: 75%; */
+  font:16px/26px Georgia, Garamond, Serif;
+  overflow-y:auto;
+  overflow-x: hidden;
   position: relative;
+  box-shadow: inset 0px 0px 20px 10px rgba(0,0,0,0.6);
+}
+
+.redBG {
+  background-color: red;
+}
+
+.greenBG {
+  background-color: green;
 }

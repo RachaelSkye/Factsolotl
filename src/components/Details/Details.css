@@ -15,12 +15,19 @@
 
 
 .cardDetail {
-  padding: 5px;
   display: flexbox;
   flex-wrap: wrap;
   width: 50%;
-  height: 40vmax;
+  height:30vmax;
   float: right;
-  margin-left: 0;
-  padding-left: 0;
+  margin: 0;
+  padding: 0;
+  height:30vmax;
+  width:50%;
+  border:1px solid #ccc;
+  font:16px/26px Georgia, Garamond, Serif;overflow-y:auto;
+  /* padding-top: 5%;
+  margin-bottom: 75%; */
+  position: relative;
+  box-shadow: inset 0px 0px 20px 10px rgba(0,0,0,0.6);
 }

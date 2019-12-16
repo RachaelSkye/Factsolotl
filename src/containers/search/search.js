@@ -13,7 +13,8 @@ class Search extends Component {
     error: false,
     loadedSchool: null,
     query: "",
-    schoolQuery: true,
+    exceedance: false,
+    exceedanceCheck: false,
     queried: false
   };
 
@@ -22,13 +23,17 @@ class Search extends Component {
       ...state,
       query: query
     });
+
+
+    let exceedanceQuery =  "https://data.ca.gov/api/3/action/datastore_search?resource_id=5ebb2d68-1186-4937-acaf-8564c9a01ed6&q=" +
+    this.state.query + ' yes'
+
     if (this.state.query === "") {
       alert("Please enter a query.");
-    } else {
+    } else if (this.state.exceedance) {
       axios
         .get(
-          "https://data.ca.gov/api/3/action/datastore_search?resource_id=5ebb2d68-1186-4937-acaf-8564c9a01ed6&q=" +
-            this.state.query
+          exceedanceQuery
         )
         .then(response => {
           const schools = response.data.result.records;
@@ -51,6 +56,35 @@ class Search extends Component {
         .catch(error => {
           this.setState({ error: true });
         });
+    } else {
+      axios
+      .get(
+        "https://data.ca.gov/api/3/action/datastore_search?resource_id=5ebb2d68-1186-4937-acaf-8564c9a01ed6&q=" +
+    this.state.query
+      )
+      .then(response => {
+        const schools = response.data.result.records;
+        if (schools.length === 0) {
+          alert("No schools matched this search");
+        }
+        const newSchool = schools.map(school => {
+          return {
+            ...school,
+            id: v4()
+          };
+        });
+        this.setState({
+          ...state,
+          schools: newSchool,
+          schoolQuery: true,
+          queried: true
+        });
+      })
+      .catch(error => {
+        this.setState({ error: true });
+      });
+
+
     }
   }
 
@@ -77,20 +111,20 @@ class Search extends Component {
   onToggleQuery(state) {
     this.setState({
       ...state,
-      schoolQuery: !this.state.schoolQuery
+      exceedance: !this.state.exceedance
     });
   }
 
   render() {
-    const toggleSchool = this.state.schoolQuery
-      ? classes.toggleSchool
-      : classes.toggleCounty;
-    const toggleCounty = this.state.schoolQuery
-      ? classes.toggleCounty
-      : classes.toggleSchool;
-    const title = this.state.schoolQuery
-      ? "Search by school"
-      : "Search by county";
+    const toggleExceedanceOn = this.state.exceedance
+      ? classes.toggleOn
+      : classes.toggleOff;
+    const toggleExceedanceOff = this.state.exceedance
+      ? classes.toggleOff
+      : classes.toggleOn;
+    const title = this.state.exceedance
+      ? "Only show schools with an exceedance"
+      : "Search all schools";
 
     const results = () => {
       if (this.state.loadedSchool !== null) {
@@ -119,21 +153,18 @@ class Search extends Component {
 
     return (
       <div>
-         <div>
             <Details
               id={this.state.selectedSchoolId}
               loadedSchool={this.state.loadedSchool}
             />
-          </div>
-          <div className={classes.list}>
             <List
               error={this.state.error}
               schools={this.state.schools}
               selectedSchoolId={this.state.selectedSchoolId}
               onSchoolSelect={id => this.schoolDetailsHandler(id)}
               loadedSchool={this.state.loadedSchool}
+              queried={this.state.queried}
             />
-          </div>
 
         <div className="footer">
           <div className="card white">
@@ -154,17 +185,18 @@ class Search extends Component {
                 <div className="card-action">
                   <div className="switch">
                     <label>
+                      <span className={'exceedanceToggle'}>Filter by exceedance: </span>
                       <span
                         onClick={event => this.onToggleQuery(event)}
-                        className={toggleSchool}
+                        className={toggleExceedanceOn}
                       >
-                        School
+                        On
                       </span>
                       <span
                         onClick={event => this.onToggleQuery(event)}
-                        className={toggleCounty}
+                        className={toggleExceedanceOff}
                       >
-                        County
+                        Off
                       </span>
                     </label>
                     <button

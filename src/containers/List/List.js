@@ -2,11 +2,15 @@ import React from "react";
 import Preview from "../../components/Preview/Preview";
 import * as classes from "./List.module.css";
 
-const List = props => {
+const List = (props) => {
   let schools = <p style={{ textAlign: "center" }}>Something went wrong!</p>;
-  if (!props.error) {
+  if (props.queried) {
     schools = props.schools.map(school => {
+      
+      let exceedanceCheck = props.exceedanceCheck ? 'redBG' : 'greenBG'
+
       return (
+        <div className={exceedanceCheck}>
         <Preview
           key={school.id}
           name={school.school_name}
@@ -14,10 +18,15 @@ const List = props => {
           exceedance={school.action_level_exceedance}
           clicked={() => props.onSchoolSelect(school.id)}
         />
+        </div>
       );
     });
+  } else {
+    schools = 
+    <div className={'card'}>
+      <h1>search results</h1>
+    </div>
   }
-
   return (
     <div className={classes.list}>
       {schools}

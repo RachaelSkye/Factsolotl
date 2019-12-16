@@ -18,11 +18,13 @@
   margin: 0;
   width: 100%;
 }
-.row {
 
-    /* height:30%;
-    width:05%;
-    border:1px solid #ccc;
-    font:16px/26px Georgia, Garamond, Serif;overflow:auto; */
-  
+.redBG {
+  background-color: red;
+  padding: 0;
+  margin: 0;
+}
+
+.greenBG {
+  background-color: green;
 }
