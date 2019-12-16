@@ -13,27 +13,69 @@ class Search extends Component {
     error: false,
     loadedSchool: null,
     query: "",
+    query1: "",
+    query2: "",
+    query3: "",
     exceedance: false,
     exceedanceCheck: false,
     queried: false
   };
 
-  queryHandler(query, state) {
+  queryHandler(query1, query2, query3, state) {
     this.setState({
       ...state,
-      query: query
+      query1: query1,
+      qeury2: query2,
+      query3: query3
     });
 
+    let exceedanceQuery =
+      "https://data.ca.gov/api/3/action/datastore_search?resource_id=5ebb2d68-1186-4937-acaf-8564c9a01ed6&q=" +
+      this.state.query1 +
+      ", " +
+      this.state.query2 +
+      ", " +
+      this.state.query3 +
+      ", yes";
 
-    let exceedanceQuery =  "https://data.ca.gov/api/3/action/datastore_search?resource_id=5ebb2d68-1186-4937-acaf-8564c9a01ed6&q=" +
-    this.state.query + ' yes'
-
-    if (this.state.query === "") {
+    if (
+      this.state.query1 === "" &&
+      this.state.query2 === "" &&
+      this.state.query3 === ""
+    ) {
       alert("Please enter a query.");
     } else if (this.state.exceedance) {
       axios
+        .get(exceedanceQuery)
+        .then(response => {
+          const schools = response.data.result.records;
+          if (schools.length === 0) {
+            alert("No schools matched this search");
+          }
+          const newSchool = schools.map(school => {
+            return {
+              ...school,
+              id: v4()
+            };
+          });
+          this.setState({
+            ...state,
+            schools: newSchool,
+            queried: true
+          });
+        })
+        .catch(error => {
+          this.setState({ error: true });
+        });
+    } else {
+      axios
         .get(
-          exceedanceQuery
+          "https://data.ca.gov/api/3/action/datastore_search?resource_id=5ebb2d68-1186-4937-acaf-8564c9a01ed6&q=" +
+            this.state.query1 +
+            ", " +
+            this.state.query2 +
+            ", " +
+            this.state.query3
         )
         .then(response => {
           const schools = response.data.result.records;
@@ -56,35 +98,6 @@ class Search extends Component {
         .catch(error => {
           this.setState({ error: true });
         });
-    } else {
-      axios
-      .get(
-        "https://data.ca.gov/api/3/action/datastore_search?resource_id=5ebb2d68-1186-4937-acaf-8564c9a01ed6&q=" +
-    this.state.query
-      )
-      .then(response => {
-        const schools = response.data.result.records;
-        if (schools.length === 0) {
-          alert("No schools matched this search");
-        }
-        const newSchool = schools.map(school => {
-          return {
-            ...school,
-            id: v4()
-          };
-        });
-        this.setState({
-          ...state,
-          schools: newSchool,
-          schoolQuery: true,
-          queried: true
-        });
-      })
-      .catch(error => {
-        this.setState({ error: true });
-      });
-
-
     }
   }
 
@@ -115,6 +128,13 @@ class Search extends Component {
     });
   }
 
+  handleYearFilter(e, state) {
+    this.setState({
+      ...state,
+      query3: e.target.value
+    })
+  }
+
   render() {
     const toggleExceedanceOn = this.state.exceedance
       ? classes.toggleOn
@@ -126,45 +146,20 @@ class Search extends Component {
       ? "Only show schools with an exceedance"
       : "Search all schools";
 
-    const results = () => {
-      if (this.state.loadedSchool !== null) {
-        return (
-          <div>
-            <Details
-              id={this.state.selectedSchoolId}
-              loadedSchool={this.state.loadedSchool}
-            />
-          </div>
-        );
-      } else {
-        return (
-          <div className={classes.list}>
-            <List
-              error={this.state.error}
-              schools={this.state.schools}
-              selectedSchoolId={this.state.selectedSchoolId}
-              onSchoolSelect={id => this.schoolDetailsHandler(id)}
-              loadedSchool={this.state.loadedSchool}
-            />
-          </div>
-        );
-      }
-    };
-
     return (
       <div>
-            <Details
-              id={this.state.selectedSchoolId}
-              loadedSchool={this.state.loadedSchool}
-            />
-            <List
-              error={this.state.error}
-              schools={this.state.schools}
-              selectedSchoolId={this.state.selectedSchoolId}
-              onSchoolSelect={id => this.schoolDetailsHandler(id)}
-              loadedSchool={this.state.loadedSchool}
-              queried={this.state.queried}
-            />
+        <Details
+          id={this.state.selectedSchoolId}
+          loadedSchool={this.state.loadedSchool}
+        />
+        <List
+          error={this.state.error}
+          schools={this.state.schools}
+          selectedSchoolId={this.state.selectedSchoolId}
+          onSchoolSelect={id => this.schoolDetailsHandler(id)}
+          loadedSchool={this.state.loadedSchool}
+          queried={this.state.queried}
+        />
 
         <div className="footer">
           <div className="card white">
@@ -173,40 +168,67 @@ class Search extends Component {
               <form
                 onSubmit={e => {
                   e.preventDefault();
-                  this.queryHandler(this.state.query);
+                  this.queryHandler(this.state.query1, this.state.query2);
                 }}
               >
-                <input
-                  type="text"
-                  placeholder="Search..."
-                  value={this.state.query}
-                  onChange={e => this.setState({ query: e.target.value })}
-                />
+                <div className={classes.select}>
+                  {/* <Select options={options} onChange={(values) => this.setValues(values)} /> */}
+                  <select
+                    className="browser-default"
+                    value={this.state.query3}
+                    onChange={(e) => this.handleYearFilter(e)}
+                  >
+                    <option>ALL YEARS</option>
+                    <option value="2017">2017</option>
+
+                    <option value="2018">2018</option>
+
+                    <option value="2019">2019</option>
+                  </select>
+                </div>
+
+                <div>
+                  <input
+                    type="text"
+                    placeholder="Search..."
+                    value={this.state.query1}
+                    onChange={e => this.setState({ query1: e.target.value })}
+                  />
+                  <label>Enter school name</label>
+
+                  <input
+                    type="text"
+                    placeholder="Search..."
+                    value={this.state.query2}
+                    onChange={e => this.setState({ query2: e.target.value })}
+                  />
+                  <label>Enter county</label>
+                </div>
                 <div className="card-action">
-                  <div className="switch">
-                    <label>
-                      <span className={'exceedanceToggle'}>Filter by exceedance: </span>
-                      <span
-                        onClick={event => this.onToggleQuery(event)}
-                        className={toggleExceedanceOn}
-                      >
-                        On
-                      </span>
-                      <span
-                        onClick={event => this.onToggleQuery(event)}
-                        className={toggleExceedanceOff}
-                      >
-                        Off
-                      </span>
-                    </label>
-                    <button
-                      id="search"
-                      className="btn waves-effect waves-light green"
-                      type="submit"
+                  <label>
+                    <span className={"exceedanceToggle"}>
+                      Filter by exceedance:{" "}
+                    </span>
+                    <span
+                      onClick={event => this.onToggleQuery(event)}
+                      className={toggleExceedanceOn}
                     >
-                      <i className="large material-icons prefix">search</i>
-                    </button>
-                  </div>
+                      On
+                    </span>
+                    <span
+                      onClick={event => this.onToggleQuery(event)}
+                      className={toggleExceedanceOff}
+                    >
+                      Off
+                    </span>
+                  </label>
+                  <button
+                    id="search"
+                    className="btn waves-effect waves-light green"
+                    type="submit"
+                  >
+                    <i className="large material-icons prefix">search</i>
+                  </button>
                 </div>
               </form>
             </div>

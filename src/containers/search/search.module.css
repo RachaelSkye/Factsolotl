@@ -6,7 +6,6 @@ button {
 .toggleOn {
   color: white;
   background-color: rgb(52, 196, 76);
-  /* border-radius: 40%; */
   padding: 5px;
   margin: 20px;
   font-weight: bolder;
@@ -14,20 +13,24 @@ button {
   box-shadow: 2px 2px grey;
 }
 
+.input:hover {
+  background-color: lightgrey;
+}
+
 .toggleOff {
   margin: 20px;
 }
 
+.select {
+  width: 15vmax;
+  float: right;
 
+}
 
-/* .footer {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  padding: 1rem;
-} */
-
+.filters {
+  display: flex;
+  flex-wrap: nowrap;
+}
 
 
 .details {
