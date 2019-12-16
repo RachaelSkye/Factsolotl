@@ -30,8 +30,12 @@ class Search extends Component {
             this.state.query
         )
         .then(response => {
-          console.log(response);
           const schools = response.data.result.records;
+          if (schools.length === 0) {
+            alert('No schools matched this search')
+          } else {
+            
+          }
           const newSchool = schools.map(school => {
             return {
               ...school,
@@ -48,10 +52,7 @@ class Search extends Component {
         .catch(error => {
           this.setState({ error: true });
         });
-  
-
       }
-
   }
 
   schoolDetailsHandler(id, state) {
@@ -82,17 +83,17 @@ class Search extends Component {
 
   render() {
     const toggleSchool = this.state.schoolQuery
-      ? 'toggleSchool'
-      : 'toggleCounty';
+      ? classes.toggleSchool
+      : classes.toggleCounty;
     const toggleCounty = this.state.schoolQuery
-      ? 'toggleCounty'
-      : 'toggleSchool';
+      ? classes.toggleCounty
+      : classes.toggleSchool;
     const title = this.state.schoolQuery
       ? "Search by school"
       : "Search by county";
-   
 
     return (
+      
       <div>
            <List
           error={this.state.error}
