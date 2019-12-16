@@ -1,6 +1,6 @@
 import React from "react";
 import Preview from "../../components/Preview/Preview";
-import "./List.css";
+import * as classes from "./List.module.css";
 
 const List = props => {
   let schools = <p style={{ textAlign: "center" }}>Something went wrong!</p>;
@@ -19,7 +19,7 @@ const List = props => {
   }
 
   return (
-    <div className={'list'}>
+    <div className={classes.list}>
       {schools}
     </div>
   );

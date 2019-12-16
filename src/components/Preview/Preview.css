@@ -16,9 +16,13 @@
 .details {
   padding: 5px;
   margin: 0;
+  width: 100%;
 }
 .row {
-  display: flexbox;
-  margin: 0;
-  padding: 0;
+
+    /* height:30%;
+    width:05%;
+    border:1px solid #ccc;
+    font:16px/26px Georgia, Garamond, Serif;overflow:auto; */
+  
 }

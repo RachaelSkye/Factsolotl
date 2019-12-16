@@ -1,0 +1,9 @@
+.list {
+  height:30vmax;
+  width:50%;
+  border:1px solid #ccc;
+  font:16px/26px Georgia, Garamond, Serif;overflow-y:auto;
+  /* padding-top: 5%;
+  margin-bottom: 75%; */
+  position: relative;
+}

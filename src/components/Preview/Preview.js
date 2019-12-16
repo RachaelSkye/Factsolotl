@@ -5,9 +5,7 @@ import "./Preview.css";
 const preview = props => (
   <div>
     <div className="row">
-      <div className="col s12 m4">
         <div className="card">
-          <div className="card-image">
             <div className="details">
               <h4>{props.name}</h4>
               <div className="Info">
@@ -22,11 +20,9 @@ const preview = props => (
                 </button>
               </div>
             </div>
-          </div>
-        </div>
       </div>
     </div>
-  </div>
+   </div>
 );
 
 export default preview;

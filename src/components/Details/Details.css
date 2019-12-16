@@ -13,6 +13,14 @@
   color: black;
 }
 
-.details {
+
+.cardDetail {
   padding: 5px;
+  display: flexbox;
+  flex-wrap: wrap;
+  width: 50%;
+  height: 40vmax;
+  float: right;
+  margin-left: 0;
+  padding-left: 0;
 }
