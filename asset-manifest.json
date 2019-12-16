@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/Factsolotl/static/css/main.ba0fe3e3.chunk.css",
-    "main.js": "/Factsolotl/static/js/main.fa80c51e.chunk.js",
-    "main.js.map": "/Factsolotl/static/js/main.fa80c51e.chunk.js.map",
+    "main.css": "/Factsolotl/static/css/main.addde0dc.chunk.css",
+    "main.js": "/Factsolotl/static/js/main.099b873b.chunk.js",
+    "main.js.map": "/Factsolotl/static/js/main.099b873b.chunk.js.map",
     "runtime-main.js": "/Factsolotl/static/js/runtime-main.ecfc0a59.js",
     "runtime-main.js.map": "/Factsolotl/static/js/runtime-main.ecfc0a59.js.map",
     "static/js/2.fc50bca0.chunk.js": "/Factsolotl/static/js/2.fc50bca0.chunk.js",
     "static/js/2.fc50bca0.chunk.js.map": "/Factsolotl/static/js/2.fc50bca0.chunk.js.map",
     "index.html": "/Factsolotl/index.html",
-    "precache-manifest.f3c8fb9be73cb570468ac4fa367c47bb.js": "/Factsolotl/precache-manifest.f3c8fb9be73cb570468ac4fa367c47bb.js",
+    "precache-manifest.0a6b786359272308e214b3015e61df6b.js": "/Factsolotl/precache-manifest.0a6b786359272308e214b3015e61df6b.js",
     "service-worker.js": "/Factsolotl/service-worker.js",
-    "static/css/main.ba0fe3e3.chunk.css.map": "/Factsolotl/static/css/main.ba0fe3e3.chunk.css.map",
+    "static/css/main.addde0dc.chunk.css.map": "/Factsolotl/static/css/main.addde0dc.chunk.css.map",
     "static/js/2.fc50bca0.chunk.js.LICENSE": "/Factsolotl/static/js/2.fc50bca0.chunk.js.LICENSE",
     "static/media/bubbleF.png": "/Factsolotl/static/media/bubbleF.ecb67f7a.png",
     "static/media/index.css": "/Factsolotl/static/media/factsolotlBG.46b1b552.png",
@@ -19,7 +19,7 @@
   "entrypoints": [
     "static/js/runtime-main.ecfc0a59.js",
     "static/js/2.fc50bca0.chunk.js",
-    "static/css/main.ba0fe3e3.chunk.css",
-    "static/js/main.fa80c51e.chunk.js"
+    "static/css/main.addde0dc.chunk.css",
+    "static/js/main.099b873b.chunk.js"
   ]
 }
