@@ -14,9 +14,6 @@ const Nav = () => {
             src={factsolotl}
             alt="A pink cartoon axolotl"/>
         </a>
-        {/* <div className={classes.header}>
-          <p>Factsolotl</p>
-        </div> */}
       </div>
   );
 };

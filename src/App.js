@@ -1,15 +1,9 @@
-
 import React from 'react';
-import './App.css';
-import Search from './containers/search/search';
+import Search from './containers/Search/Search';
 import Nav from './components/navbar/navbar';
-import { connect } from "react-redux";
-import ViewControl from './containers/viewControl/viewControl';
-
-
+import './App.css';
 
 class App extends React.Component {
-
   
   render() {
     if(!this.props.queried){
@@ -27,7 +21,7 @@ class App extends React.Component {
         <div className="App">
           <div className="sliding-background"></div>
           <Nav/>
-          <ViewControl />
+          {/* <ViewControl /> */}
           <div className='footer'>
           <Search />
           </div>
@@ -36,15 +30,5 @@ class App extends React.Component {
     }  
   }
 }
-  
 
-
-const mapStateToProps = state => {
-  return {
-    schoolQuery: state.schoolQuery,
-    queried: state.queried
-  };
-};
-
-export default connect(mapStateToProps)(App);
-
+export default App;

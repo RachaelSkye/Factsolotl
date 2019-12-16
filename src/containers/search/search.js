@@ -1,99 +1,153 @@
-import React from "react";
-import { connect } from "react-redux";
-import * as actionTypes from "../../store/actions";
-import * as classes from "./search.module.css";
+import React, { Component } from "react";
+import axios from "axios";
+import { v4 } from "uuid";
+import List from "../List/List";
+import Details from "../../components/Details/Details";
+import "./Search.module.css";
+import * as classes from "./Search.module.css";
 
-class Search extends React.Component {
-  submitForm(event) {
-    event.preventDefault();
-    if(this.props.schoolQuery) {
-      this.props.setSchool(event)
-      this.props.onSchoolQuery(event)      
-    } else {
-      // this.props.setCounty(event)
-      // this.props.onCountyQuery(event)
-      alert('The county search is currently undergoing maintenance.');
-    }  
+class Search extends Component {
+  state = {
+    schools: [],
+    selectedschoolId: '',
+    error: false,
+    loadedSchool: null,
+    query: '',
+    schoolQuery: true,
+    queried: false
+  };
+
+  queryHandler(query, state) {
+    this.setState({ 
+      ...state,
+      query: query });
+      if (this.state.query === ''){
+        alert('Please enter a query.')
+      } else {
+        axios
+        .get(
+          "https://data.ca.gov/api/3/action/datastore_search?resource_id=5ebb2d68-1186-4937-acaf-8564c9a01ed6&q=" +
+            this.state.query
+        )
+        .then(response => {
+          console.log(response);
+          const schools = response.data.result.records;
+          const newSchool = schools.map(school => {
+            return {
+              ...school,
+              id: v4()
+            };
+          });
+          this.setState({ 
+            ...state,
+            schools: newSchool,
+            schoolQuery: true,
+            queried: true
+           });
+        })
+        .catch(error => {
+          this.setState({ error: true });
+        });
+  
+
+      }
+
   }
 
+  schoolDetailsHandler(id, state) {
+    this.setState({ selectedSchoolId: id });
+    let currentSchool = this.state.schools;
+    for (let i = 0; i < currentSchool.length; i++) {
+      if (currentSchool[i].id === id) {
+        this.setState({ 
+          ...state,
+          loadedSchool: currentSchool[i],
+         });
+      }
+    }
+  }
+
+  updateQuery(newQuery, state) {
+    this.setState({ 
+      ...state,
+      query: newQuery
+     });
+  }
+
+  onToggleQuery(state) {
+      this.setState({
+        ...state,
+        schoolQuery: !this.state.schoolQuery })
+      }
+
   render() {
-    const toggleSchool = this.props.schoolQuery ? classes.toggleSchool : classes.toggleCounty
-    const toggleCounty = this.props.schoolQuery ? classes.toggleCounty : classes.toggleSchool
-    const title = this.props.schoolQuery ? 'Search by school' : 'Search by county'
+    const toggleSchool = this.state.schoolQuery
+      ? 'toggleSchool'
+      : 'toggleCounty';
+    const toggleCounty = this.state.schoolQuery
+      ? 'toggleCounty'
+      : 'toggleSchool';
+    const title = this.state.schoolQuery
+      ? "Search by school"
+      : "Search by county";
+   
 
     return (
-      <div className='footer'>
-            <div className="card white">
-              <div className="card-content grey-text">
-                <span className="card-title">{title}</span>
-                <form onSubmit={event => this.submitForm(event)}>
-                  <input
-                    type="text"
-                    placeholder="Search..."
-                    // onChange={e => this.props.setQueryState(e)}
-                    id="query"
-                    ref={input => {
-                      this.query = input;
-                    }}/>
-
-                  <div className="card-action">
-                    <div className="switch">
-                      <label>
-                        <span onClick={this.props.onToggleQuery} className={toggleSchool}>School</span>
-                        <span onClick={this.props.onToggleQuery} className={toggleCounty}>County</span>
-                      </label>
-                      <button
-                        id='search'
-                        className="btn waves-effect waves-light grey"
-                        type="submit">
-                        <i className="large material-icons prefix">search</i>
-                      </button>
-                    </div>
+      <div>
+           <List
+          error={this.state.error}
+          schools={this.state.schools}
+          selectedSchoolId={this.state.selectedSchoolId}
+          onSchoolSelect={id => this.schoolDetailsHandler(id)}
+          loadedSchool={this.state.loadedSchool}
+        />
+        <Details
+          id={this.state.selectedSchoolId}
+          loadedSchool={this.state.loadedSchool}
+        />
+        <div className="footer">
+          <div className="card white">
+            <div className="card-content grey-text">
+              <span className="card-title">{title}</span>
+              <form
+                onSubmit={e => {
+                  e.preventDefault();
+                  this.queryHandler(this.state.query);
+                }}>
+                <input
+                  type="text"
+                  placeholder="Search..."
+                  value={this.state.query}
+                  onChange={e => this.setState({ query: e.target.value })}/>
+                <div className="card-action">
+                  <div className="switch">
+                    <label>
+                      <span
+                        onClick={(event) => this.onToggleQuery(event)}
+                        className={toggleSchool}>
+                        School
+                      </span>
+                      <span
+                        onClick={(event) => this.onToggleQuery(event)}
+                        className={toggleCounty}>
+                        County
+                      </span>
+                    </label>
+                    <button
+                      id="search"
+                      className="btn waves-effect waves-light green"
+                      type="submit">
+                      <i className="large material-icons prefix">search</i>
+                    </button>
                   </div>
-                </form>
-              </div>
+                </div>
+              </form>
             </div>
+          </div>
+        </div>
       </div>
     );
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    schoolQuery: state.schoolQuery,
-    queried: state.queried
-  };
-};
-
-const mapDispatchToProps = dispatch => {
-  return {
-    onSchoolQuery: event =>
-      dispatch({
-        type: actionTypes.SUBMIT_SCHOOL_QUERY,
-        query: event.target.query.value
-      }),
-    onCountyQuery: event =>
-      dispatch({
-        type: actionTypes.SUBMIT_COUNTY_QUERY,
-        query: event.target.query.value
-      }),
-      onToggleQuery: () =>
-      dispatch({
-        type: actionTypes.TOGGLE_QUERY_TYPE,
-      }),
-      setSchool: event =>
-      dispatch({
-        type: actionTypes.SET_SCHOOL_QUERY,
-        query: event.target.query.value
-
-      }),
-      setCounty: event =>
-      dispatch({
-        type: actionTypes.SET_COUNTY_QUERY,
-        query: event.target.query.value
-
-      })
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Search);
+export default Search;
