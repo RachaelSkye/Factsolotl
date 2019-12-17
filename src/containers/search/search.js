@@ -12,13 +12,13 @@ class Search extends Component {
     selectedschoolId: "",
     error: false,
     loadedSchool: null,
-    query: "",
     query1: "",
     query2: "",
     query3: "",
     exceedance: false,
     exceedanceCheck: false,
     queried: false,
+    detailsSelected: false,
     total: 0
   };
 
@@ -115,7 +115,8 @@ class Search extends Component {
       if (currentSchool[i].id === id) {
         this.setState({
           ...state,
-          loadedSchool: currentSchool[i]
+          loadedSchool: currentSchool[i],
+          detailsSelected: true
         });
       }
     }
@@ -264,6 +265,19 @@ class Search extends Component {
 
     if (!this.state.queried) {
       return <div>{search}</div>;
+    } else if (this.state.queried && !this.state.detailsSelected) {
+      return (
+        <div className={classes.display}>
+          {resultsDisplay}
+          <label>Number of schools matching search: {this.state.total}</label>
+          <button
+            className="btn"
+            type="click"
+            onClick={e => this.toggleSearch(e)}>
+            New Search
+          </button>
+        </div>
+      );
     } else {
       return (
         <div className={classes.display}>
@@ -273,8 +287,7 @@ class Search extends Component {
           <button
             className="btn"
             type="click"
-            onClick={e => this.toggleSearch(e)}
-          >
+            onClick={e => this.toggleSearch(e)}>
             New Search
           </button>
         </div>
