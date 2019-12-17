@@ -2,14 +2,11 @@
 .cardDetail {
   display: flexbox;
   flex-wrap: wrap;
-  width: 50%;
-  height:30vmax;
-  margin: 0;
-  padding: 0;
   height:30vmax;
   width:100%;
   border:1px solid #ccc;
-  font:16px/26px Georgia, Garamond, Serif;overflow-y:auto;
+  overflow-y:auto;
+  overflow-x: hidden;
   position: relative;
   box-shadow: inset 0px 0px 20px 10px rgba(0,0,0,0.6);
 }

@@ -22,12 +22,11 @@ class Search extends Component {
     total: 0
   };
 
-  queryHandler(query1, query2, query3, state) {
+  queryHandler(query1, query2, state) {
     this.setState({
       ...state,
       query1: query1,
-      qeury2: query2,
-      query3: query3
+      qeury2: query2
     });
 
     let exceedanceQuery =
@@ -143,6 +142,13 @@ class Search extends Component {
     });
   }
 
+  toggleSearch(state) {
+    this.setState({
+      ...state,
+      queried: !this.state.queried
+    });
+  }
+
   render() {
     const toggleExceedanceOn = this.state.exceedance
       ? classes.toggleOn
@@ -154,29 +160,32 @@ class Search extends Component {
       ? "Only show schools with an exceedance"
       : "Search all schools";
 
-    return (
+    const detailsDisplay = (
+      <div className={classes.detailBox}>
+        <label>School details:</label>
+        <Details
+          id={this.state.selectedSchoolId}
+          loadedSchool={this.state.loadedSchool}
+        />
+      </div>
+    );
+
+    const resultsDisplay = (
       <div>
-              <div className={classes.detailBox}>
-              <label>School details:</label>
-              <Details
-                id={this.state.selectedSchoolId}
-                loadedSchool={this.state.loadedSchool}
-              />
-              </div>
-          
-              <label>Schools matching search:</label>
-              <List
-                error={this.state.error}
-                schools={this.state.schools}
-                selectedSchoolId={this.state.selectedSchoolId}
-                onSchoolSelect={id => this.schoolDetailsHandler(id)}
-                loadedSchool={this.state.loadedSchool}
-                queried={this.state.queried}
-              />
-       
+        <label>Schools matching search:</label>
+        <List
+          error={this.state.error}
+          schools={this.state.schools}
+          selectedSchoolId={this.state.selectedSchoolId}
+          onSchoolSelect={id => this.schoolDetailsHandler(id)}
+          loadedSchool={this.state.loadedSchool}
+          queried={this.state.queried}
+        />
+      </div>
+    );
 
-        <label>Number of schools matching search: {this.state.total}</label>
-
+    const search = (
+      <div>
         <div className="footer">
           <div className="card white">
             <div className="card-content grey-text">
@@ -252,6 +261,25 @@ class Search extends Component {
         </div>
       </div>
     );
+
+    if (!this.state.queried) {
+      return <div>{search}</div>;
+    } else {
+      return (
+        <div className={classes.display}>
+          {resultsDisplay}
+          {detailsDisplay}
+          <label>Number of schools matching search: {this.state.total}</label>
+          <button
+            className="btn"
+            type="click"
+            onClick={e => this.toggleSearch(e)}
+          >
+            New Search
+          </button>
+        </div>
+      );
+    }
   }
 }
 
