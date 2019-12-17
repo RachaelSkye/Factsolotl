@@ -51,16 +51,18 @@ class Search extends Component {
       axios
         .get(exceedanceQuery)
         .then(response => {
-          const schools = response.data.result.records;
+          let schools = response.data.result.records;
           const total = response.data.result.total;
 
           if (schools.length === 0) {
             alert("No schools matched this search");
           }
+    
           const newSchool = schools.map(school => {
             return {
               ...school,
-              id: v4()
+              id: v4(),
+              key: v4()
             };
           });
           this.setState({
@@ -93,7 +95,9 @@ class Search extends Component {
           const newSchool = schools.map(school => {
             return {
               ...school,
-              id: v4()
+              id: v4(),
+              key: v4()
+
             };
           });
 
@@ -190,6 +194,8 @@ class Search extends Component {
 
     const resultsDisplay = (
       <div>
+        <p>Click the down arrow for school sample details:</p>
+
         <label>Schools matching search: {this.state.total}</label>
         <List
           error={this.state.error}
@@ -206,14 +212,18 @@ class Search extends Component {
     const search = (
       <div>
         <p>
-          Systems compare sample results from homes to EPA’s action level of
+          Search by school name and/or county. Filter search by year and/or exceedance. Your search will return a result for each sample taken. Most schools will have several results and results with no exceedance (lead less than 15ppb) will look the same, with lead = 5ppb. 
+        </p>
+        <label>
+          "Systems compare sample results from homes to EPA’s action level of
           Exceeding the action level is not a violation. Violations can be
           assessed if a system does not perform certain required actions (e.g.,
           public education or lead service line replacement) after the action
           level is exceeded. Other violations may also be assessed under the
           rule. For example, if samples are collected improperly, samples are
-          not reported, or if treatment is done incorrectly.
-        </p>
+          not reported, or if treatment is done incorrectly."
+        </label>
+        <label> -The EPA Lead and Copper rule</label>
       
   
         <div className="footer">
@@ -325,6 +335,7 @@ class Search extends Component {
       return (
         <div className={classes.display}>
           <Logo />
+
           <button
             id="searchToggle"
             className="waves-effect waves-dark btn-small   blue-grey"

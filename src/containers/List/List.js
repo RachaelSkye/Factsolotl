@@ -18,6 +18,7 @@ const List = (props) => {
           exceedance={school.action_level_exceedance}
           toggleDetails={school.toggleDetails}
           closeDetais={school.closeDetais}
+          sampleLocation={school.school_site_name}
           clicked={() => props.onSchoolSelect(school.id)}
         />
         </div>

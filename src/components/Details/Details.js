@@ -15,6 +15,8 @@ const Details = props => {
     const sampleDate = new Date(props.loadedSchool.sample_date);
     const sampleYear = sampleDate.getFullYear();
     const sampleMonth = sampleDate.getMonth() + 1;
+    const sampleDay = sampleDate.getDate();
+
     school = (
         <div className={classes.cardDetail}>
           <div className="card">
@@ -30,8 +32,9 @@ const Details = props => {
               <p>School district: {props.loadedSchool.district}</p>
               <p>Exceedance: {props.loadedSchool.action_level_exceedance}</p>
               <p>Lead concentration: {props.loadedSchool.result} ppb</p>
+              <p>Sampled from: {props.loadedSchool.school_site_name}</p>
               <p>
-                Date sampled: {sampleMonth}/{sampleYear}
+                Date sampled: {sampleMonth}/{sampleDay}/{sampleYear}
               </p>
               <p>Water system: {props.loadedSchool.water_system_name}</p>
           </div>
