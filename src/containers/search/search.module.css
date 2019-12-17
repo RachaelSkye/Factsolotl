@@ -22,17 +22,18 @@ button {
 }
 
 .select {
-  width: 15vmax;
+  width: 110px;
   float: right;
 }
 
-.filters {
-  display: flex;
-  flex-wrap: nowrap;
-}
 
 .detailBox {
-  float: right;
+  float: left;
+  width: 100%;
+}
+
+#searchToggle {
+  margin: 20px;
 }
 
 

@@ -18,6 +18,14 @@ const Details = props => {
     school = (
         <div className={classes.cardDetail}>
           <div className="card">
+          <button
+                  onClick={(e) => props.closeDetails(e)}
+                  id="closeBtn"
+                  className="btn btn waves-effect waves-dark white">
+                  <i id="close" className="material-icons">
+                    close
+                  </i>
+                </button>
               <h4>{props.loadedSchool.school_name}</h4>
               <p>School district: {props.loadedSchool.district}</p>
               <p>Exceedance: {props.loadedSchool.action_level_exceedance}</p>

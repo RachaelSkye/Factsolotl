@@ -5,6 +5,8 @@ import List from "../List/List";
 import Details from "../../components/Details/Details";
 import "./Search.module.css";
 import * as classes from "./Search.module.css";
+import Splash from "../../components/Splash/Splash";
+import Logo from "../../components/Logo/Logo";
 
 class Search extends Component {
   state = {
@@ -19,7 +21,8 @@ class Search extends Component {
     exceedanceCheck: false,
     queried: false,
     detailsSelected: false,
-    total: 0
+    total: 0,
+    beginSearch: false
   };
 
   queryHandler(query1, query2, state) {
@@ -122,6 +125,13 @@ class Search extends Component {
     }
   }
 
+  toggleDetails(state) {
+    this.setState({
+      ...state,
+      detailsSelected: !this.state.detailsSelected
+    });
+  }
+
   updateQuery(newQuery, state) {
     this.setState({
       ...state,
@@ -150,6 +160,13 @@ class Search extends Component {
     });
   }
 
+  startSearch(state) {
+    this.setState({
+      ...state,
+      beginSearch: true
+    });
+  }
+
   render() {
     const toggleExceedanceOn = this.state.exceedance
       ? classes.toggleOn
@@ -163,17 +180,17 @@ class Search extends Component {
 
     const detailsDisplay = (
       <div className={classes.detailBox}>
-        <label>School details:</label>
         <Details
           id={this.state.selectedSchoolId}
           loadedSchool={this.state.loadedSchool}
+          closeDetails={e => this.toggleDetails(e)}
         />
       </div>
     );
 
     const resultsDisplay = (
       <div>
-        <label>Schools matching search:</label>
+        <label>Schools matching search: {this.state.total}</label>
         <List
           error={this.state.error}
           schools={this.state.schools}
@@ -181,12 +198,24 @@ class Search extends Component {
           onSchoolSelect={id => this.schoolDetailsHandler(id)}
           loadedSchool={this.state.loadedSchool}
           queried={this.state.queried}
+          toggleDetails={this.state.detailsSelected}
         />
       </div>
     );
 
     const search = (
       <div>
+        <p>
+          Systems compare sample results from homes to EPA’s action level of
+          Exceeding the action level is not a violation. Violations can be
+          assessed if a system does not perform certain required actions (e.g.,
+          public education or lead service line replacement) after the action
+          level is exceeded. Other violations may also be assessed under the
+          rule. For example, if samples are collected improperly, samples are
+          not reported, or if treatment is done incorrectly.
+        </p>
+      
+  
         <div className="footer">
           <div className="card white">
             <div className="card-content grey-text">
@@ -262,34 +291,50 @@ class Search extends Component {
         </div>
       </div>
     );
+    if (!this.state.beginSearch) {
+      return (
+        <div>
+          <Splash startSearch={e => this.startSearch(e)} />
+        </div>
+      );
+    }
 
     if (!this.state.queried) {
-      return <div>{search}</div>;
+      return (
+        <div>
+          <Logo />
+          {search}
+        </div>
+      );
     } else if (this.state.queried && !this.state.detailsSelected) {
       return (
         <div className={classes.display}>
-          {resultsDisplay}
-          <label>Number of schools matching search: {this.state.total}</label>
+          <Logo />
           <button
-            className="btn"
+            id="searchToggle"
+            className="waves-effect waves-dark btn-small   blue-grey"
             type="click"
-            onClick={e => this.toggleSearch(e)}>
+            onClick={e => this.toggleSearch(e)}
+          >
             New Search
           </button>
+          {resultsDisplay}
         </div>
       );
     } else {
       return (
         <div className={classes.display}>
-          {resultsDisplay}
-          {detailsDisplay}
-          <label>Number of schools matching search: {this.state.total}</label>
+          <Logo />
           <button
-            className="btn"
+            id="searchToggle"
+            className="waves-effect waves-dark btn-small   blue-grey"
             type="click"
-            onClick={e => this.toggleSearch(e)}>
+            onClick={e => this.toggleSearch(e)}
+          >
             New Search
           </button>
+          {resultsDisplay}
+          {detailsDisplay}
         </div>
       );
     }

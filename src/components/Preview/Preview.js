@@ -11,7 +11,8 @@ const preview = (props) => {
   } else if (props.exceedance === 'No') {
       exceedanceCheck = 'greenBG'
   }
-
+ 
+  console.log(props.toggleDetails)
   return (
     <div className={exceedanceCheck} >
     <div className="row">
@@ -24,7 +25,7 @@ const preview = (props) => {
                   id="expand"
                   className="btn btn waves-effect waves-dark white">
                   <i id="chevron" className="material-icons">
-                    chevron_right
+                  expand_more
                   </i>
                 </button>
               </div>

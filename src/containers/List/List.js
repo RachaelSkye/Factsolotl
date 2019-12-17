@@ -16,6 +16,8 @@ const List = (props) => {
           name={school.school_name}
           district={school.district}
           exceedance={school.action_level_exceedance}
+          toggleDetails={school.toggleDetails}
+          closeDetais={school.closeDetais}
           clicked={() => props.onSchoolSelect(school.id)}
         />
         </div>

@@ -2,6 +2,7 @@
   max-width: 15vmax;
   float: left;
   position: absolute;
+  bottom: 0;
 }
 
 .header {

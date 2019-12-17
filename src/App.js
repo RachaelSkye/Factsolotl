@@ -4,16 +4,20 @@ import Nav from './components/navbar/navbar';
 import './App.css';
 
 class App extends React.Component {
+  state = {
+    startSearch: false
+  }
+
+ 
   
   render() {
       return (
-        <div className="App">
-          <Nav/>
-          <div className='search'>
-          <Search />
-          </div>
-          <div className="sliding-background"></div>
+        <div className="App container">
+        <div className='search'>
+        <Search />
         </div>
+        <div className="sliding-background"></div>
+      </div>
       );
 }
 }

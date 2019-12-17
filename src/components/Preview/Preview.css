@@ -1,8 +1,8 @@
 #expand {
-  position:absolute;
-  right: 0;
-  top: 0;
-  height: 100%;
+  /* position:absolute; */
+  /* right: 0; */
+  bottom: 0;
+  width: 100%;
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
