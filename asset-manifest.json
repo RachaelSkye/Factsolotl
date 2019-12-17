@@ -1,25 +1,26 @@
 {
   "files": {
-    "main.css": "/Factsolotl/static/css/main.6e6faa60.chunk.css",
-    "main.js": "/Factsolotl/static/js/main.fb789672.chunk.js",
-    "main.js.map": "/Factsolotl/static/js/main.fb789672.chunk.js.map",
+    "main.css": "/Factsolotl/static/css/main.61ddc9fd.chunk.css",
+    "main.js": "/Factsolotl/static/js/main.9a03cf96.chunk.js",
+    "main.js.map": "/Factsolotl/static/js/main.9a03cf96.chunk.js.map",
     "runtime-main.js": "/Factsolotl/static/js/runtime-main.ecfc0a59.js",
     "runtime-main.js.map": "/Factsolotl/static/js/runtime-main.ecfc0a59.js.map",
-    "static/js/2.bebe7570.chunk.js": "/Factsolotl/static/js/2.bebe7570.chunk.js",
-    "static/js/2.bebe7570.chunk.js.map": "/Factsolotl/static/js/2.bebe7570.chunk.js.map",
+    "static/js/2.d032433e.chunk.js": "/Factsolotl/static/js/2.d032433e.chunk.js",
+    "static/js/2.d032433e.chunk.js.map": "/Factsolotl/static/js/2.d032433e.chunk.js.map",
     "index.html": "/Factsolotl/index.html",
-    "precache-manifest.fa4eee8c62b7baa8be7a9314cea18d8f.js": "/Factsolotl/precache-manifest.fa4eee8c62b7baa8be7a9314cea18d8f.js",
+    "precache-manifest.1d6fa5892048d52fbc83b28b2d48cdc4.js": "/Factsolotl/precache-manifest.1d6fa5892048d52fbc83b28b2d48cdc4.js",
     "service-worker.js": "/Factsolotl/service-worker.js",
-    "static/css/main.6e6faa60.chunk.css.map": "/Factsolotl/static/css/main.6e6faa60.chunk.css.map",
-    "static/js/2.bebe7570.chunk.js.LICENSE": "/Factsolotl/static/js/2.bebe7570.chunk.js.LICENSE",
+    "static/css/main.61ddc9fd.chunk.css.map": "/Factsolotl/static/css/main.61ddc9fd.chunk.css.map",
+    "static/js/2.d032433e.chunk.js.LICENSE": "/Factsolotl/static/js/2.d032433e.chunk.js.LICENSE",
     "static/media/bubbleF.png": "/Factsolotl/static/media/bubbleF.ecb67f7a.png",
     "static/media/index.css": "/Factsolotl/static/media/factsolotlBG.46b1b552.png",
-    "static/media/App.css": "/Factsolotl/static/media/factsolotlBubbles.77861a73.png"
+    "static/media/App.css": "/Factsolotl/static/media/factsolotlBubbles.77861a73.png",
+    "static/media/pbdw.pdf": "/Factsolotl/static/media/pbdw.cb4189a5.pdf"
   },
   "entrypoints": [
     "static/js/runtime-main.ecfc0a59.js",
-    "static/js/2.bebe7570.chunk.js",
-    "static/css/main.6e6faa60.chunk.css",
-    "static/js/main.fb789672.chunk.js"
+    "static/js/2.d032433e.chunk.js",
+    "static/css/main.61ddc9fd.chunk.css",
+    "static/js/main.9a03cf96.chunk.js"
   ]
 }
