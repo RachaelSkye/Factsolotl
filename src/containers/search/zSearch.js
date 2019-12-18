@@ -25,6 +25,129 @@ class Search extends Component {
     beginSearch: false
   };
 
+
+
+
+
+  exceedanceQueryHandler(state, exceedanceQuery) {
+    return(
+
+      axios
+      .get(exceedanceQuery)
+      .then(response => {
+        let schools = response.data.result.records;
+        const total = response.data.result.total;  
+
+        if (schools.length === 0) {
+          alert("No schools matched this search");
+        }
+        for(let i = 0; i < schools.length; i++){
+          let exceedanceCheck = schools[i].action_level_exceedance.toUpperCase();
+          if(exceedanceCheck === 'YES'){
+            const newSchool = schools[i].map(school => {
+              return {
+                ...school,
+                id: v4(),
+                key: v4()
+              };
+            });
+            this.setState({
+              ...state,
+              schools: newSchool,
+              queried: true,
+              total: total
+            });
+          }
+        }
+      })
+      .catch(error => {
+        this.setState({ error: true });
+      })
+      );
+  }
+
+  countyQueryHandler(state, query) {
+    return (
+      axios
+      .get(query)
+      .then(response => {
+        let schools = response.data.result.records;
+        const total = response.data.result.total;          
+
+        if (schools.length === 0) {
+          alert("No schools matched this search");
+        } else {
+          
+        }
+
+        for(let i = 0; i < schools.length; i++) {
+          let countyCheck = schools[i].school_county.toUpperCase();
+          let countyQuery = this.state.query2.toUpperCase();
+          if(countyCheck.includes(countyQuery)){
+            const newSchool = schools[i].map(school => {
+              return {
+                ...school,
+                id: v4(),
+                key: v4()
+              };
+            });
+            this.setState({
+              ...state,
+              schools: newSchool,
+              queried: true,
+              total: total
+            });
+          }
+        }
+      })
+      .catch(error => {
+        this.setState({ error: true });
+      })
+
+    );
+    
+}
+
+schoolNameQueryHandler(state, query) {
+  return (
+    axios
+    .get(query)
+    .then(response => {
+      let schools = response.data.result.records;
+      const total = response.data.result.total;          
+
+      if (schools.length === 0) {
+        alert("No schools matched this search");
+      }
+
+      for(let i = 0; i < schools.length; i++) {
+        let schoolCheck = schools[i].school_name.toUpperCase();
+        let schoolQuery = this.state.query1.toUpperCase();
+        if(schoolCheck.includes(schoolQuery)){
+          const newSchool = schools[i].map(school => {
+            return {
+              ...school,
+              id: v4(),
+              key: v4()
+            };
+          });
+          this.setState({
+            ...state,
+            schools: newSchool,
+            queried: true,
+            total: total
+          });
+        }
+      }
+    })
+    .catch(error => {
+      this.setState({ error: true });
+    })
+
+  );
+
+}
+
 queryHandler(state) {
 
   let baseQuery = "https://data.ca.gov/api/3/action/datastore_search?resource_id=5ebb2d68-1186-4937-acaf-8564c9a01ed6&q=" +
@@ -45,68 +168,20 @@ queryHandler(state) {
     this.state.query3 === ""
   ) {
     alert("Please enter a query.");
-  } else if (!this.state.exceedance){
-    axios
-    .get(baseQuery)
-    .then(response => {
-      let schools = response.data.result.records;
-      const total = response.data.result.total;          
-
-      if (schools.length === 0) {
-        alert("No schools matched this search");
-      }
-          const newSchool = schools.map(school => {
-            return {
-              ...school,
-              id: v4(),
-              key: v4()
-            };
-          });
-          this.setState({
-            ...state,
-            schools: newSchool,
-            queried: true,
-            total: total
-          });
-       
-    })
-    .catch(error => {
-      this.setState({ error: true });
-    });
-
-  } else if (this.state.exceedance){
-    axios
-    .get(exceedanceQuery)
-    .then(response => {
-      let schools = response.data.result.records;
-      const total = response.data.result.total;          
-
-      if (schools.length === 0) {
-        alert("No schools matched this search");
-      }
-          const newSchool = schools.map(school => {
-            return {
-              ...school,
-              id: v4(),
-              key: v4()
-            };
-          });
-          this.setState({
-            ...state,
-            schools: newSchool,
-            queried: true,
-            total: total
-          });
-       
-    })
-    .catch(error => {
-      this.setState({ error: true });
-    });
-
-  } 
+  } else if (this.state.query1 !== "" && this.state.query2 === "" && !this.state.exceedance){
+      this.schoolNameQueryHandler(state, baseQuery);
+  } else if (this.state.query2 !== "" && this.state.query1 === "" && !this.state.exceedance) {
+    this.countyQueryHandler(state, baseQuery);
+  } else if (this.state.query1 !== "" && this.state.query2 && this.state.exceedance) {
+    this.schoolNameQueryHandler(state, exceedanceQuery);
+  } else if (this.state.query2 !== "" && this.state.query1 === "" && this.state.exceedance) {
+    this.countyQueryHandler(state, exceedanceQuery);
+  }
 }
 
 
+
+  
 
   schoolDetailsHandler(id, state) {
     this.setState({ selectedSchoolId: id });
@@ -294,13 +369,13 @@ queryHandler(state) {
         </div>
       </div>
     );
-    // if (!this.state.beginSearch) {
-    //   return (
-    //     <div>
-    //       <Splash startSearch={e => this.startSearch(e)} />
-    //     </div>
-    //   );
-    // }
+    if (!this.state.beginSearch) {
+      return (
+        <div>
+          <Splash startSearch={e => this.startSearch(e)} />
+        </div>
+      );
+    }
 
     if (!this.state.queried) {
       return (
