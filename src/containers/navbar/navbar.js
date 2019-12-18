@@ -1,6 +1,7 @@
 import React from "react";
 import * as classes from "./navbar.module.css";
-import Logo from "../Logo/Logo";
+import Logo from "../../components/Logo/Logo";
+
 
 const Nav = (props) => {
 

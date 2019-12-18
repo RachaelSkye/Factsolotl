@@ -5,8 +5,9 @@ import List from "../List/List";
 import Details from "../../components/Details/Details";
 import "./Search.module.css";
 import * as classes from "./Search.module.css";
-import Splash from "../../components/Splash/Splash";
-import Nav from "../../components/navbar/navbar";
+import Splash from "../Splash/Splash";
+import Nav from "../navbar/navbar";
+
 
 class Search extends Component {
   state = {
@@ -318,7 +319,6 @@ class Search extends Component {
     }
 
     if (!this.state.queried && this.state.beginSearch) {
-      console.log(this.state.beginSearch)
       return (
         <div>
            <Nav 
@@ -343,7 +343,6 @@ class Search extends Component {
         </div>
       );
     } else {
-      console.log(this.state.beginSearch)
       return (
         <div className={classes.display}>
           <Nav 

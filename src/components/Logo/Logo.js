@@ -1,5 +1,5 @@
 import React from "react";
-import factsolotl from "../../img/bubbleF.png";
+import factsolotl from "../../Assets/img/bubbleF.png";
 import * as classes from "./Logo.module.css";
 
 const Nav = () => {

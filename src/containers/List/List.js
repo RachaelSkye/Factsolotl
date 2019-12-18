@@ -2,17 +2,18 @@ import React from "react";
 import Preview from "../../components/Preview/Preview";
 import * as classes from "./List.module.css";
 
+
 const List = (props) => {
   let schools = <p style={{ textAlign: "center" }}>Something went wrong!</p>;
   if (props.queried) {
     schools = props.schools.map(school => {
       
       let exceedanceCheck = props.exceedanceCheck ? 'redBG' : 'greenBG'
-
+      console.log(school.key)
       return (
         <div className={exceedanceCheck}>
         <Preview
-          key={school.id}
+          key={school.key}
           name={school.school_name}
           district={school.district}
           exceedance={school.action_level_exceedance}

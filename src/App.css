@@ -47,7 +47,7 @@
 }
 
 .sliding-background {
-  background: url('./img/factsolotlBubbles.png')
+  background: url('./Assets/img/factsolotlBubbles.png')
   repeat-y;
   width: 100%;
   height: 400%;

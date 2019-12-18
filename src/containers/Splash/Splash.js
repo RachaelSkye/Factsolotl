@@ -1,8 +1,8 @@
 import React from "react";
 import * as classes from "./Splash.module.css";
 import "./Splash.module.css";
-import Map from "../Map/Map";
-import DontPanic from "../DontPanic/DontPanic";
+import Map from "../../components/Map/Map";
+// import DontPanic from "../DontPanic/DontPanic";
 
 const Splash = props => {
   return (
@@ -14,7 +14,6 @@ const Splash = props => {
           Use Factsolotl to search for lead results from tap water samples taken
           at public schools across California from 2017 to 2019.
         </h4>
-
         <button
           type="click"
           className="btn green"

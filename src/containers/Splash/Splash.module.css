@@ -46,9 +46,9 @@
 .legend {
   float: right;
   width: 200px;
-  position: absolute;
-  margin-top: 500px;
-  margin-left: 1000px;
+  /* position: absolute; */
+  /* margin-top: 500px; */
+  /* margin-left: 1000px; */
   background: rgba(255,255,255,0.4);
   border-right: solid grey 1px;
   border-left: solid grey 1px;
