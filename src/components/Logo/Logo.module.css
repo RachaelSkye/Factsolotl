@@ -1,10 +1,10 @@
 .leftLogo {
   max-width: 15vmax;
-  float: left;
+  float: right;
   position: absolute;
-  bottom: 0;
+  top: 0;
 }
-
+/* 
 .header {
   text-align: center;
   font-family: "Public Sans", sans-serif;
@@ -12,9 +12,9 @@
   text-shadow: 2px 2px 2px rgb(176, 211, 222);
   padding-top: 7vmax;
   padding-left: 1vmax;
-  float: left;
+  float: right;
   position: absolute;
   font-weight: bolder;
-}
+} */
 
 

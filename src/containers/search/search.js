@@ -6,7 +6,7 @@ import Details from "../../components/Details/Details";
 import "./Search.module.css";
 import * as classes from "./Search.module.css";
 import Splash from "../../components/Splash/Splash";
-import Logo from "../../components/Logo/Logo";
+import Map from '../../components/Map/Map';
 
 class Search extends Component {
   state = {
@@ -22,7 +22,8 @@ class Search extends Component {
     queried: false,
     detailsSelected: false,
     total: 0,
-    beginSearch: false
+    beginSearch: false,
+    map: false
   };
 
 queryHandler(state) {
@@ -157,6 +158,13 @@ queryHandler(state) {
     });
   }
 
+  toggleMap(state) {
+    this.setState({
+      ...state,
+      map: !this.state.map
+    });
+  }
+
   startSearch(state) {
     this.setState({
       ...state,
@@ -174,6 +182,8 @@ queryHandler(state) {
     const title = this.state.exceedance
       ? "Only show schools with an exceedance"
       : "Search all schools";
+
+    
 
     const detailsDisplay = (
       <div className={classes.detailBox}>
@@ -294,25 +304,27 @@ queryHandler(state) {
         </div>
       </div>
     );
-    // if (!this.state.beginSearch) {
-    //   return (
-    //     <div>
-    //       <Splash startSearch={e => this.startSearch(e)} />
-    //     </div>
-    //   );
-    // }
+    if (!this.state.beginSearch) {
+      console.log(this.state.map);
+      return (
+        <div>
+          <Splash 
+          seeMap={e => this.toggleMap(e)}
+          mapViewStatus={this.state.map}
+          startSearch={e => this.startSearch(e)} />
+        </div>
+      );
+    }
 
     if (!this.state.queried) {
       return (
         <div>
-          <Logo />
           {search}
         </div>
       );
     } else if (this.state.queried && !this.state.detailsSelected) {
       return (
         <div className={classes.display}>
-          <Logo />
           <button
             id="searchToggle"
             className="waves-effect waves-dark btn-small   blue-grey"
@@ -327,8 +339,6 @@ queryHandler(state) {
     } else {
       return (
         <div className={classes.display}>
-          <Logo />
-
           <button
             id="searchToggle"
             className="waves-effect waves-dark btn-small   blue-grey"
