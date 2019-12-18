@@ -31,7 +31,7 @@
   - npm i
   - npm start
 
-* View the deployed Factsolotl [here] (https://rbouissey.github.io/Factsolotl/).
+* View the deployed Factsolotl [here](https://rbouissey.github.io/Factsolotl/).
 
 ![Factsolotl](FactsolotlFlow.png)
 

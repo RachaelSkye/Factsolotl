@@ -1,6 +1,6 @@
 import React from "react";
 import * as classes from "./Details.css";
-import facts from "../../pbdw.pdf";
+import facts from "../../Assets/pbdw.pdf";
 
 
 const Details = props => {
