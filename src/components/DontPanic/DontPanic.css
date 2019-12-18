@@ -1,39 +1,29 @@
 
-.info{
-  width: 80%;
-  float: right;
-}
-
-.fortyTwo {
-  margin-top: 300px;
-  position: absolute;
-  float: left;
-  font-family: 'Lilita One', cursive;
-}
-
-
-
-
 
 .neon {
   position: relative;
   overflow: hidden;
   filter: brightness(200%);
+  background-color: black;
+  width: 50%;
+  height: 150px;
+  border-radius: 20%;
+
 }
 
 .text {
-  background-color: black;
+  background-color: transparent;
   color: white;
-  font-size: 180px;
   font-weight: bold;
-  font-family: sans-serif;
+  font-family: 'Lilita One', cursive;
   text-transform: uppercase;
   position: relative;
   user-select: none;
+  
 }
 
 .text::before {
-  content: attr(dataText);
+  content: attr(data-text);
   position: absolute;
   color: white;
   filter: blur(0.02em);
@@ -42,7 +32,7 @@
 
 .gradient {
   position: absolute;
-  background: linear-gradient(45deg, red, gold, lightgreen, gold, red);
+  background: linear-gradient(45deg, rgb(0, 166, 255), rgb(99, 250, 252), rgb(102, 203, 243),rgb(99, 250, 252), rgb(0, 166, 255));
   top: 0;
   left: 0;
   right: 0;
@@ -76,7 +66,3 @@
       transform: translate(50%, 50%);
   }
 }
-
-
-
- 

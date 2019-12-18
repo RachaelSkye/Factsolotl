@@ -6,7 +6,7 @@ import Details from "../../components/Details/Details";
 import "./Search.module.css";
 import * as classes from "./Search.module.css";
 import Splash from "../../components/Splash/Splash";
-import Map from '../../components/Map/Map';
+import Nav from "../../components/navbar/navbar";
 
 class Search extends Component {
   state = {
@@ -26,36 +26,33 @@ class Search extends Component {
     map: false
   };
 
-queryHandler(state) {
+  queryHandler(state) {
+    let baseQuery =
+      "https://data.ca.gov/api/3/action/datastore_search?resource_id=5ebb2d68-1186-4937-acaf-8564c9a01ed6&q=" +
+      this.state.query1 +
+      ", " +
+      this.state.query2 +
+      ", " +
+      this.state.query3;
 
-  let baseQuery = "https://data.ca.gov/api/3/action/datastore_search?resource_id=5ebb2d68-1186-4937-acaf-8564c9a01ed6&q=" +
-  this.state.query1 +
-  ", " +
-  this.state.query2 +
-  ", " +
-  this.state.query3
-  
-  let exceedanceQuery =
-   baseQuery +
-    ", yes";
+    let exceedanceQuery = baseQuery + ", yes";
 
+    if (
+      this.state.query1 === "" &&
+      this.state.query2 === "" &&
+      this.state.query3 === ""
+    ) {
+      alert("Please enter a query.");
+    } else if (!this.state.exceedance) {
+      axios
+        .get(baseQuery)
+        .then(response => {
+          let schools = response.data.result.records;
+          const total = response.data.result.total;
 
-  if (
-    this.state.query1 === "" &&
-    this.state.query2 === "" &&
-    this.state.query3 === ""
-  ) {
-    alert("Please enter a query.");
-  } else if (!this.state.exceedance){
-    axios
-    .get(baseQuery)
-    .then(response => {
-      let schools = response.data.result.records;
-      const total = response.data.result.total;          
-
-      if (schools.length === 0) {
-        alert("No schools matched this search");
-      }
+          if (schools.length === 0) {
+            alert("No schools matched this search");
+          }
           const newSchool = schools.map(school => {
             return {
               ...school,
@@ -69,22 +66,20 @@ queryHandler(state) {
             queried: true,
             total: total
           });
-       
-    })
-    .catch(error => {
-      this.setState({ error: true });
-    });
+        })
+        .catch(error => {
+          this.setState({ error: true });
+        });
+    } else if (this.state.exceedance) {
+      axios
+        .get(exceedanceQuery)
+        .then(response => {
+          let schools = response.data.result.records;
+          const total = response.data.result.total;
 
-  } else if (this.state.exceedance){
-    axios
-    .get(exceedanceQuery)
-    .then(response => {
-      let schools = response.data.result.records;
-      const total = response.data.result.total;          
-
-      if (schools.length === 0) {
-        alert("No schools matched this search");
-      }
+          if (schools.length === 0) {
+            alert("No schools matched this search");
+          }
           const newSchool = schools.map(school => {
             return {
               ...school,
@@ -98,16 +93,12 @@ queryHandler(state) {
             queried: true,
             total: total
           });
-       
-    })
-    .catch(error => {
-      this.setState({ error: true });
-    });
-
-  } 
-}
-
-
+        })
+        .catch(error => {
+          this.setState({ error: true });
+        });
+    }
+  }
 
   schoolDetailsHandler(id, state) {
     this.setState({ selectedSchoolId: id });
@@ -168,7 +159,7 @@ queryHandler(state) {
   startSearch(state) {
     this.setState({
       ...state,
-      beginSearch: true
+      beginSearch: !this.state.beginSearch
     });
   }
 
@@ -182,8 +173,6 @@ queryHandler(state) {
     const title = this.state.exceedance
       ? "Only show schools with an exceedance"
       : "Search all schools";
-
-    
 
     const detailsDisplay = (
       <div className={classes.detailBox}>
@@ -214,21 +203,16 @@ queryHandler(state) {
 
     const search = (
       <div>
+        <h3>Search by school name and/or county.</h3>
+        <h4>
+          Filter search by year and/or exceedance. Your search will return a
+          result for each sample taken.
+        </h4>
         <p>
-          Search by school name and/or county. Filter search by year and/or exceedance. Your search will return a result for each sample taken. Most schools will have several results and results with no exceedance (lead less than 15ppb) will look the same, with lead = 5ppb. 
+          Most schools will have several results and results with no exceedance
+          (lead less than 15ppb) will look the same, with lead = 5ppb.
         </p>
-        <label>
-          "Systems compare sample results from homes to EPA’s action level of
-          Exceeding the action level is not a violation. Violations can be
-          assessed if a system does not perform certain required actions (e.g.,
-          public education or lead service line replacement) after the action
-          level is exceeded. Other violations may also be assessed under the
-          rule. For example, if samples are collected improperly, samples are
-          not reported, or if treatment is done incorrectly."
-        </label>
-        <label> -The EPA Lead and Copper rule</label>
-      
-  
+
         <div className="footer">
           <div className="card white">
             <div className="card-content grey-text">
@@ -299,32 +283,53 @@ queryHandler(state) {
                   </button>
                 </div>
               </form>
+              <label>
+                <h6>
+                  Systems compare sample results from homes to EPA’s action
+                  level of 0.015 mg/L (15 ppb). Exceeding the action level is
+                  not a violation. Violations can be assessed if a system does
+                  not perform certain required actions (e.g., public education
+                  or lead service line replacement) after the action level is
+                  exceeded. Other violations may also be assessed under the
+                  rule. For example, if samples are collected improperly,
+                  samples are not reported, or if treatment is done incorrectly.
+                </h6>
+              </label>
+              <label> -The EPA Lead and Copper rule</label>
             </div>
           </div>
         </div>
       </div>
     );
     if (!this.state.beginSearch) {
-      console.log(this.state.map);
       return (
         <div>
-          <Splash 
-          seeMap={e => this.toggleMap(e)}
-          mapViewStatus={this.state.map}
-          startSearch={e => this.startSearch(e)} />
+          <Nav 
+          startSearch={e => this.startSearch(e)} 
+          searchStatus={this.state.beginSearch}/>
+          <Splash
+            seeMap={e => this.toggleMap(e)}
+            mapViewStatus={this.state.map}
+            startSearch={e => this.startSearch(e)} 
+          />
         </div>
       );
     }
 
-    if (!this.state.queried) {
+    if (!this.state.queried && this.state.beginSearch) {
+      console.log(this.state.beginSearch)
       return (
         <div>
+           <Nav 
+          startSearch={e => this.startSearch(e)} 
+          searchStatus={this.state.beginSearch}/>
           {search}
         </div>
       );
     } else if (this.state.queried && !this.state.detailsSelected) {
       return (
         <div className={classes.display}>
+          <Nav startSearch={e => this.startSearch(e)} />
           <button
             id="searchToggle"
             className="waves-effect waves-dark btn-small   blue-grey"
@@ -337,8 +342,12 @@ queryHandler(state) {
         </div>
       );
     } else {
+      console.log(this.state.beginSearch)
       return (
         <div className={classes.display}>
+          <Nav 
+          startSearch={e => this.startSearch(e)} 
+          searchStatus={this.state.beginSearch}/>
           <button
             id="searchToggle"
             className="waves-effect waves-dark btn-small   blue-grey"

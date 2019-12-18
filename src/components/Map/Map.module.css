@@ -1,5 +1,15 @@
 .map {
-  width: 700px; 
-  height: 300px;
-  position: absolute;
+  width: 100vmin; 
+  height: 100vmin;
+  float: right;
+
+}
+
+.mapLabel {
+  float: left;
+  background-attachment: fixed;
+  /* position: relative; */
+  margin-top: 11vmax;
+  margin-left: 16vmax;
+  font-size: 1.5vmax;
 }

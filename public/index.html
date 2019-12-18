@@ -90,6 +90,12 @@
         resolution: 'provinces',
         markerOpacity: 0.5,
         colorAxis: {colors: ['green', 'yellow', 'orange', 'red' ]},
+        datalessRegionColor: 'transparent',
+        backgroundColor: {
+          fill:'transparent',
+          stroke: 'black',
+          strokeWidth: '50px'},
+        legend: 'none'
       };
 
       var chart = new google.visualization.GeoChart(document.getElementById('chart_div'));

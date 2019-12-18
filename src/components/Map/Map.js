@@ -1,12 +1,14 @@
-import React from 'react';
-import * as classes from './Map.module.css';
+import React from "react";
+import * as classes from "./Map.module.css";
 
+const Map = props => {
+  return (
+    <div>
+      <p className={classes.mapLabel}>Exceedences by county:</p>
 
-const Map = (props) => {
- 
-   return(
-    <div id="chart_div" className={classes.map}></div>
- );
- }
+      <div id="chart_div" className={classes.map}></div>
+    </div>
+  );
+};
 
- export default Map;
+export default Map;

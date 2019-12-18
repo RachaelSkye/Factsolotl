@@ -1,5 +1,7 @@
 import React from "react";
 import * as classes from "./Details.css";
+import facts from "../../pbdw.pdf";
+
 
 const Details = props => {
   let school = (
@@ -38,6 +40,14 @@ const Details = props => {
               </p>
               <p>Water system: {props.loadedSchool.water_system_name}</p>
           </div>
+          <p>Learn more about the EPA lead rule:</p>
+          <iframe
+        className={classes.pdf}
+        title="dwFacts"
+        src={facts}
+        width="100%"
+        height="700px"
+      ></iframe>
         </div>
     );
   }
