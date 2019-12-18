@@ -5,10 +5,8 @@
   overflow: hidden;
   filter: brightness(200%);
   background-color: black;
-  width: 50%;
+  width: 115px;
   height: 150px;
-  border-radius: 20%;
-
 }
 
 .text {

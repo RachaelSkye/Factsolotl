@@ -2,6 +2,9 @@
 .info{
   width: 80%;
   float: right;
+  background: rgba(255,255,255,0.2);
+  border-right: solid grey 1px;
+  border-left: solid grey 1px;
 }
 
 .fortyTwo {
@@ -9,9 +12,43 @@
   position: absolute;
   float: left;
   font-family: 'Lilita One', cursive;
+  color: rgb(70, 70, 70);
+  background: rgba(255,255,255,0.2);
+  border-right: solid grey 1px;
+  border-left: solid grey 1px;
+
+}
+
+.content {
+  font-family: 'Fira Sans', sans-serif;
+  color: grey;
+}
+
+.content2 {
+  font-family: 'Fira Sans', sans-serif;
+  color: rgb(70, 70, 70);
+
 }
 
 
+
+.title {
+  font-family: 'Fira Sans', sans-serif;
+  font-weight: bold;
+  color: rgb(70, 70, 70);
+}
+
+.legend {
+  float: right;
+  width: 200px;
+  position: absolute;
+  margin-top: 350px;
+  margin-left: 1000px;
+  background: rgba(255,255,255,0.2);
+  border-right: solid grey 1px;
+  border-left: solid grey 1px;
+
+}
 
 
 
