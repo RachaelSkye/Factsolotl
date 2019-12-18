@@ -1,11 +1,11 @@
 .list {
   height:30vmax;
   width:100%;
-  border:1px solid #ccc;
+  border:10px ridge #ccc;
   overflow-y:auto;
   overflow-x: hidden;
   position: relative;
-  box-shadow: inset 0px 0px 20px 10px rgba(0,0,0,0.6);
+  box-shadow: inset 0px 0px 10px 1px rgba(0,0,0,0.2);
 }
 
 .redBG {
@@ -15,3 +15,4 @@
 .greenBG {
   background-color: green;
 }
+

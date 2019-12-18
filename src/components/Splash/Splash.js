@@ -31,7 +31,7 @@ const Splash = props => {
 
       <div className={classes.legend}>
         <label>
-          The map below shows the number of samples, per county, had an
+          The map shows the number of samples, per county, had an
           exceedance. An exceedance is a lead result greater than 15ppb.
         </label>
         <br />

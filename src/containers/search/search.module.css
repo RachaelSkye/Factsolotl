@@ -13,9 +13,31 @@ button {
   box-shadow: 2px 2px grey;
 }
 
-.input:hover {
-  background-color: lightgrey;
+.clickExpand {
+  font-family: 'Fira Sans', sans-serif;
+  color: rgb(70, 70, 70);
+
 }
+
+.total {
+  color: red;
+}
+
+
+.searchHeader {
+  background: rgba(255,255,255,0.4);
+  border-right: solid grey 1px;
+  border-left: solid grey 1px;
+  padding: 15px;
+  font-family: 'Fira Sans', sans-serif;
+  color: rgb(70, 70, 70);
+}
+
+.searchFooter {
+  font-family: 'Fira Sans', sans-serif;
+
+}
+
 
 .toggleOff {
   margin: 20px;
@@ -30,6 +52,8 @@ button {
 .detailBox {
   float: left;
   width: 100%;
+  font-family: 'Fira Sans', sans-serif;
+  color: rgb(70, 70, 70);
 }
 
 #searchToggle {

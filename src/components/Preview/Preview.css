@@ -1,12 +1,8 @@
 #expand {
-  /* position:absolute; */
-  /* right: 0; */
-  bottom: 0;
-  width: 100%;
-  border-top-left-radius: 0;
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
-  padding-left: 5px;
+  position:absolute;
+  right: 0;
+  top: 0;
+  margin: 10px;
 }
 
 #chevron {
@@ -17,6 +13,9 @@
   padding: 5px;
   margin: 0;
   width: 100%;
+  font-family: 'Fira Sans', sans-serif;
+  color: rgb(70, 70, 70);
+
 }
 
 .redBG {
@@ -27,4 +26,6 @@
 
 .greenBG {
   background-color: green;
+  padding: 0;
+  margin: 0;
 }

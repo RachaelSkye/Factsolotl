@@ -21,11 +21,11 @@ const Details = props => {
 
     school = (
         <div className={classes.cardDetail}>
-          <div className="card">
+          <div id='detailInset' className="card">
           <button
                   onClick={(e) => props.closeDetails(e)}
                   id="closeBtn"
-                  className="btn btn waves-effect waves-dark white">
+                  className=" btn-floating btn waves-effect waves-dark white">
                   <i id="close" className="material-icons">
                     close
                   </i>

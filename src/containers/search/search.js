@@ -185,10 +185,10 @@ class Search extends Component {
     );
 
     const resultsDisplay = (
-      <div>
-        <p>Click the down arrow for school sample details:</p>
+      <div className={classes.previewBox}>
+        <h4 className={classes.clickExpand}>Click the down arrow for school sample details:</h4>
 
-        <label>Schools matching search: {this.state.total}</label>
+        <p className={classes.clickExpand}>Schools matching search: <span className={classes.total}>{this.state.total}</span></p>
         <List
           error={this.state.error}
           schools={this.state.schools}
@@ -203,6 +203,7 @@ class Search extends Component {
 
     const search = (
       <div>
+        <div className={classes.searchHeader}>
         <h3>Search by school name and/or county.</h3>
         <h4>
           Filter search by year and/or exceedance. Your search will return a
@@ -212,7 +213,7 @@ class Search extends Component {
           Most schools will have several results and results with no exceedance
           (lead less than 15ppb) will look the same, with lead = 5ppb.
         </p>
-
+        </div>
         <div className="footer">
           <div className="card white">
             <div className="card-content grey-text">
@@ -284,7 +285,7 @@ class Search extends Component {
                 </div>
               </form>
               <label>
-                <h6>
+                <h6 className={classes.searchFooter}>
                   Systems compare sample results from homes to EPA’s action
                   level of 0.015 mg/L (15 ppb). Exceeding the action level is
                   not a violation. Violations can be assessed if a system does

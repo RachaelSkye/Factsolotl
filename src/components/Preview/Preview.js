@@ -7,13 +7,13 @@ const preview = (props) => {
   let exceedanceCheck;
 
   if (props.exceedance === 'Yes') {
-      exceedanceCheck = 'redBG pulse'
+      exceedanceCheck = 'redBG pulse btn-floating btn waves-effect waves-dark red'
   } else if (props.exceedance === 'No') {
-      exceedanceCheck = 'greenBG'
+      exceedanceCheck = 'greenBG btn-floating btn waves-effect waves-dark white'
   }
  
   return (
-    <div className={exceedanceCheck} >
+    <div >
     <div className="row">
         <div className="card">
             <div className="details">
@@ -23,7 +23,7 @@ const preview = (props) => {
                 <button
                   onClick={props.clicked}
                   id="expand"
-                  className="btn btn waves-effect waves-dark white">
+                  className={exceedanceCheck}>
                   <i id="chevron" className="material-icons">
                   expand_more
                   </i>     
