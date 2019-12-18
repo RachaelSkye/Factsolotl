@@ -7,14 +7,14 @@
 
 ## Description
 
-** 
-- Factsolotl is a water quality fact finder for public schools in California. 
 
-- A query will return lead contamination information about all sampling events matching search criteria. 
+_**Factsolotl is a water quality fact finder for public schools in California. 
 
-- A visual representation of the number of schools with lead contamination greater than the EPA's action level, per county, is shown on a google geo chart of California. 
+A query will return lead contamination information about all sampling events matching search criteria. 
 
-- This app was made with JavaScript and React, and will be built for mobile with React Native. **
+A visual representation of the number of schools with lead contamination greater than the EPA's action level, per county, is shown on a google geo chart of California. 
+
+This app was made with JavaScript and React, and will be built for mobile with React Native.**_
 
 
 ## Known Issues
@@ -32,6 +32,9 @@
   - npm start
 
 * View the deployed Factsolotl [here](https://rbouissey.github.io/Factsolotl/).
+
+
+## Component Flow Chart
 
 ![Factsolotl](FactsolotlFlow.png)
 
