@@ -15,7 +15,7 @@ const preview = (props) => {
   return (
     <div >
     <div className="row">
-        <div className="card">
+        <div id='previewCard' className="card">
             <div className="details">
               <h4>{props.name}</h4>
               <label>  {props.sampleLocation}</label>

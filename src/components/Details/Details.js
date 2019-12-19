@@ -1,5 +1,6 @@
 import React from "react";
 import * as classes from "./Details.css";
+import './Details.css';
 import facts from "../../Assets/pbdw.pdf";
 
 
@@ -39,8 +40,8 @@ const Details = props => {
                 Date sampled: {sampleMonth}/{sampleDay}/{sampleYear}
               </p>
               <p>Water system: {props.loadedSchool.water_system_name}</p>
-          </div>
-          <p>Learn more about the EPA lead rule:</p>
+          </div><br/><br/>
+          <h5>Learn more about the EPA lead rule:</h5>
           <iframe
         className={classes.pdf}
         title="dwFacts"

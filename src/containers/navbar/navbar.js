@@ -12,7 +12,7 @@ const Nav = (props) => {
           className="btn-floating btn-large waves-effect waves-light transparent"
           onClick={e => props.startSearch(e)}
         >
-         <i className="material-icons">home</i>
+         <i id='homeIcon'className="material-icons">home</i>
         </button>
   );
 

@@ -8,10 +8,8 @@ const List = (props) => {
   if (props.queried) {
     schools = props.schools.map(school => {
       
-      let exceedanceCheck = props.exceedanceCheck ? 'redBG' : 'greenBG'
-      console.log(school.key)
       return (
-        <div className={exceedanceCheck}>
+        <div >
         <Preview
           key={school.key}
           name={school.school_name}

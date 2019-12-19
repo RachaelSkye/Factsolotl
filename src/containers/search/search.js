@@ -214,7 +214,7 @@ class Search extends Component {
           <h3>Search by school name and/or county.</h3>
 
           <div className="row">
-            <div className="col-md-6">
+            <div id='col1'className="col-md-6">
               <h5>Filter search by year and/or exceedance.</h5>
             </div>
             <div className="col-md-6">
