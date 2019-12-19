@@ -54,6 +54,7 @@
     "react-google-maps": "^9.4.5",
     "react-hot-loader": "^3.0.0-beta.7",
     "react-redux": "^5.1.2",
+    "react-responsive-modal": "^4.0.1",
     "react-router-dom": "^5.1.2",
     "redux": "^4.0.4",
     "redux-logger": "^3.0.6",

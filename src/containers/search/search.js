@@ -5,9 +5,10 @@ import List from "../List/List";
 import Details from "../../components/Details/Details";
 import "./Search.module.css";
 import * as classes from "./Search.module.css";
+import "./Search.module.css";
+
 import Splash from "../Splash/Splash";
 import Nav from "../navbar/navbar";
-
 
 class Search extends Component {
   state = {
@@ -187,9 +188,14 @@ class Search extends Component {
 
     const resultsDisplay = (
       <div className={classes.previewBox}>
-        <h4 className={classes.clickExpand}>Click the down arrow for school sample details:</h4>
+        <h4 className={classes.clickExpand}>
+          Click the down arrow for school sample details:
+        </h4>
 
-        <p className={classes.clickExpand}>Schools matching search: <span className={classes.total}>{this.state.total}</span></p>
+        <p className={classes.clickExpand}>
+          Schools matching search:{" "}
+          <span className={classes.total}>{this.state.total}</span>
+        </p>
         <List
           error={this.state.error}
           schools={this.state.schools}
@@ -205,15 +211,24 @@ class Search extends Component {
     const search = (
       <div>
         <div className={classes.searchHeader}>
-        <h3>Search by school name and/or county.</h3>
-        <h4>
-          Filter search by year and/or exceedance. Your search will return a
-          result for each sample taken.
-        </h4>
-        <p>
-          Most schools will have several results and results with no exceedance
-          (lead less than 15ppb) will look the same, with lead = 5ppb.
-        </p>
+          <h3>Search by school name and/or county.</h3>
+
+          <div className="row">
+            <div className="col-md-6">
+              <h5>Filter search by year and/or exceedance.</h5>
+            </div>
+            <div className="col-md-6">
+              <h5>
+                Your search will return a result for each sample taken that
+                matches the search criteria.
+              </h5>
+            </div>
+          </div>
+          <p>
+            Most schools will have several results and results with no
+            exceedance (lead less than 15ppb) will look the same, with lead =
+            5ppb.
+          </p>
         </div>
         <div className="footer">
           <div className="card white">
@@ -306,13 +321,14 @@ class Search extends Component {
     if (!this.state.beginSearch) {
       return (
         <div>
-          <Nav 
-          startSearch={e => this.startSearch(e)} 
-          searchStatus={this.state.beginSearch}/>
+          <Nav
+            startSearch={e => this.startSearch(e)}
+            searchStatus={this.state.beginSearch}
+          />
           <Splash
             seeMap={e => this.toggleMap(e)}
             mapViewStatus={this.state.map}
-            startSearch={e => this.startSearch(e)} 
+            startSearch={e => this.startSearch(e)}
           />
         </div>
       );
@@ -321,9 +337,10 @@ class Search extends Component {
     if (!this.state.queried && this.state.beginSearch) {
       return (
         <div>
-           <Nav 
-          startSearch={e => this.startSearch(e)} 
-          searchStatus={this.state.beginSearch}/>
+          <Nav
+            startSearch={e => this.startSearch(e)}
+            searchStatus={this.state.beginSearch}
+          />
           {search}
         </div>
       );
@@ -345,9 +362,10 @@ class Search extends Component {
     } else {
       return (
         <div className={classes.display}>
-          <Nav 
-          startSearch={e => this.startSearch(e)} 
-          searchStatus={this.state.beginSearch}/>
+          <Nav
+            startSearch={e => this.startSearch(e)}
+            searchStatus={this.state.beginSearch}
+          />
           <button
             id="searchToggle"
             className="waves-effect waves-dark btn-small   blue-grey"

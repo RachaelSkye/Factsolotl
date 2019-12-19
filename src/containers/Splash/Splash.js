@@ -16,7 +16,7 @@ const Splash = props => {
         </h4>
         <button
           type="click"
-          className="btn green"
+          className="btn waves-effect waves-light green"
           onClick={e => props.startSearch(e)}
         >
           Begin Search
@@ -30,12 +30,11 @@ const Splash = props => {
 
       <div className={classes.legend}>
         <label>
-          The map shows the number of samples, per county, had an
-          exceedance. An exceedance is a lead result greater than 15ppb.
+          The <span className={classes.highlightMap}>map</span> shows the number of samples, per county, that had a lead result greater than 15ppb.
         </label>
         <br />
         <br />
-        <label>Hover over a marker to see the county and numbers.</label>
+        <label>Hover over a marker for info.</label>
       </div>
       <Map />
     </div>

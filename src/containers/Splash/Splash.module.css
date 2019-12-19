@@ -17,8 +17,6 @@
   border-right: solid grey 1px;
   border-left: solid grey 1px;
   padding: 15px;
-
-
 }
 
 .content {
@@ -49,10 +47,16 @@
   /* position: absolute; */
   /* margin-top: 500px; */
   /* margin-left: 1000px; */
-  background: rgba(255,255,255,0.4);
+  background: rgba(255,255,255,0.6);
   border-right: solid grey 1px;
   border-left: solid grey 1px;
   padding: 15px;
 
 }
  
+.highlightMap {
+  font-weight: bolder;
+  color: green;
+  font-size: medium;
+}
+
