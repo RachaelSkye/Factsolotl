@@ -1,7 +1,6 @@
 import React from "react";
 import * as classes from "./Map.module.css";
 import { Chart } from "react-google-charts";
-import * as apiKey from '../../.env'
 
 class Map extends React.Component {
   render() {
@@ -90,8 +89,7 @@ class Map extends React.Component {
             chartType="GeoChart"
             data={data}
             options={options}
-            // mapsApiKey="AIzaSyDL0sPhoIQ-w6JtRXkZiIwc2izy2m26cPE"
-            mapsApiKey={apiKey.mapAPI}
+            mapsApiKey="AIzaSyDL0sPhoIQ-w6JtRXkZiIwc2izy2m26cPE"
           />
         </div>
       </div>

@@ -1,5 +1,5 @@
 import React from "react";
-import Search from "./containers/Search/Search";
+import Search from "./containers/Search/search";
 import "./App.css";
 import { BrowserRouter } from "react-router-dom";
 
