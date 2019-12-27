@@ -26,7 +26,7 @@ const List = (props) => {
   } else {
     schools = 
     <div className={'card'}>
-      <h1>search results</h1>
+      <h4>Return to search to see a list of sample previews by school here.</h4>
     </div>
   }
   return (

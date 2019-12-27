@@ -9,7 +9,7 @@ const Details = props => {
     <div className={"cardDetail"}>
       <div className="card">
         <div className="card-image">
-          <h1>school details</h1>
+          <h4>Click on a school to see sample details here.</h4>
         </div>
       </div>
     </div>

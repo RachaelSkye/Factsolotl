@@ -6,7 +6,7 @@ class Map extends React.Component {
   render() {
 
 
-      var data = [
+      let data = [
         ["County", "Exceedances"],
         ["Alameda County", 63],
         ["Alpine County", 1],
@@ -68,7 +68,7 @@ class Map extends React.Component {
         ["Yuba County", 0]
       ];
 
-      var options = {
+      const options = {
         region: "US-CA",
         displayMode: "markers",
         resolution: "provinces",
