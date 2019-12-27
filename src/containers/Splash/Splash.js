@@ -2,6 +2,8 @@ import React from "react";
 import * as classes from "./Splash.module.css";
 import "./Splash.module.css";
 import Map from "../../components/Map/Map";
+import { NavLink } from "react-router-dom";
+
 // import DontPanic from "../DontPanic/DontPanic";
 
 const Splash = props => {
@@ -14,13 +16,9 @@ const Splash = props => {
           Use Factsolotl to search for lead results from tap water samples taken
           at public schools across California from 2017 to 2019.
         </h4>
-        <button
-          type="click"
-          className="btn waves-effect waves-light green"
-          onClick={e => props.startSearch(e)}
-        >
-          Begin Search
-        </button>
+        <NavLink to="/search">
+          <button  className="btn waves-effect waves-light green">Begin Search</button>
+        </NavLink>
       </div>
       <div className={classes.fortyTwo}>
         <h1>Don't Panic</h1>
@@ -30,7 +28,8 @@ const Splash = props => {
 
       <div className={classes.legend}>
         <label>
-          The <span className={classes.highlightMap}>map</span> shows the number of samples, per county, that had a lead result greater than 15ppb.
+          The <span className={classes.highlightMap}>map</span> shows the number
+          of samples, per county, that had a lead result greater than 15ppb.
         </label>
         <br />
         <br />
