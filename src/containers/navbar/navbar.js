@@ -1,6 +1,8 @@
 import React from "react";
 import * as classes from "./navbar.module.css";
 import Logo from "../../components/Logo/Logo";
+import { NavLink } from "react-router-dom";
+
 
 
 const Nav = (props) => {
@@ -16,21 +18,15 @@ const Nav = (props) => {
         </button>
   );
 
-  if(props.searchStatus) {
     return (
       <div className={classes.nav}>
         <Logo />
+        <NavLink to='/' exact>
         {home}
+        </NavLink>
+       
       </div>
   );
-  } else {
-    return (
-      <div className={classes.nav}>
-        <Logo />
-      </div>
-    );
-  }
-
 };
 
 export default Nav;

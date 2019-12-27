@@ -6,9 +6,9 @@ import Details from "../../components/Details/Details";
 import "./Search.module.css";
 import * as classes from "./Search.module.css";
 import "./Search.module.css";
-
 import Splash from "../Splash/Splash";
 import Nav from "../navbar/navbar";
+import { Route, NavLink, Switch, Redirect } from "react-router-dom";
 
 class Search extends Component {
   state = {
@@ -24,8 +24,8 @@ class Search extends Component {
     queried: false,
     detailsSelected: false,
     total: 0,
-    beginSearch: false,
-    map: false
+    beginSearch: false
+    // map: false
   };
 
   queryHandler(state) {
@@ -123,13 +123,6 @@ class Search extends Component {
     });
   }
 
-  updateQuery(newQuery, state) {
-    this.setState({
-      ...state,
-      query: newQuery
-    });
-  }
-
   onToggleQuery(state) {
     this.setState({
       ...state,
@@ -144,6 +137,20 @@ class Search extends Component {
     });
   }
 
+  handleNameFilter(e, state) {
+    this.setState({
+      ...state,
+      query1: e.target.value
+    });
+  }
+
+  handleCountyFilter(e, state) {
+    this.setState({
+      ...state,
+      query2: e.target.value
+    });
+  }
+
   toggleSearch(state) {
     this.setState({
       ...state,
@@ -151,12 +158,19 @@ class Search extends Component {
     });
   }
 
-  toggleMap(state) {
+  handleNewSearch(state) {
     this.setState({
       ...state,
-      map: !this.state.map
+      total: 0
     });
   }
+
+  // toggleMap(state) {
+  //   this.setState({
+  //     ...state,
+  //     map: !this.state.map
+  //   });
+  // }
 
   startSearch(state) {
     this.setState({
@@ -214,7 +228,7 @@ class Search extends Component {
           <h3>Search by school name and/or county.</h3>
 
           <div className="row">
-            <div id='col1'className="col-md-6">
+            <div id="col1" className="col-md-6">
               <h5>Filter search by year and/or exceedance.</h5>
             </div>
             <div className="col-md-6">
@@ -261,7 +275,7 @@ class Search extends Component {
                     type="text"
                     placeholder="Search..."
                     value={this.state.query1}
-                    onChange={e => this.setState({ query1: e.target.value })}
+                    onChange={e => this.handleNameFilter(e)}
                   />
                   <label>Enter school name</label>
 
@@ -269,7 +283,7 @@ class Search extends Component {
                     type="text"
                     placeholder="Search..."
                     value={this.state.query2}
-                    onChange={e => this.setState({ query2: e.target.value })}
+                    onChange={e => this.handleCountyFilter(e)}
                   />
                   <label>Enter county</label>
                 </div>
@@ -291,6 +305,7 @@ class Search extends Component {
                       Off
                     </span>
                   </label>
+
                   <button
                     id="search"
                     className="btn waves-effect waves-light green"
@@ -300,6 +315,13 @@ class Search extends Component {
                   </button>
                 </div>
               </form>
+              {this.state.total > 0 && (
+                <Redirect
+                  to={{
+                    pathname: "/searchresults"
+                  }}
+                />
+              )}
               <label>
                 <h6 className={classes.searchFooter}>
                   Systems compare sample results from homes to EPA’s action
@@ -318,67 +340,61 @@ class Search extends Component {
         </div>
       </div>
     );
-    if (!this.state.beginSearch) {
-      return (
-        <div>
-          <Nav
-            startSearch={e => this.startSearch(e)}
-            searchStatus={this.state.beginSearch}
-          />
-          <Splash
-            seeMap={e => this.toggleMap(e)}
-            mapViewStatus={this.state.map}
-            startSearch={e => this.startSearch(e)}
-          />
-        </div>
-      );
-    }
-
-    if (!this.state.queried && this.state.beginSearch) {
-      return (
-        <div>
-          <Nav
-            startSearch={e => this.startSearch(e)}
-            searchStatus={this.state.beginSearch}
-          />
-          {search}
-        </div>
-      );
-    } else if (this.state.queried && !this.state.detailsSelected) {
-      return (
-        <div className={classes.display}>
-          <Nav startSearch={e => this.startSearch(e)} />
-          <button
-            id="searchToggle"
-            className="waves-effect waves-dark btn-small   blue-grey"
-            type="click"
-            onClick={e => this.toggleSearch(e)}
-          >
-            New Search
-          </button>
-          {resultsDisplay}
-        </div>
-      );
-    } else {
-      return (
-        <div className={classes.display}>
-          <Nav
-            startSearch={e => this.startSearch(e)}
-            searchStatus={this.state.beginSearch}
-          />
-          <button
-            id="searchToggle"
-            className="waves-effect waves-dark btn-small   blue-grey"
-            type="click"
-            onClick={e => this.toggleSearch(e)}
-          >
-            New Search
-          </button>
-          {resultsDisplay}
-          {detailsDisplay}
-        </div>
-      );
-    }
+    return (
+      <Switch>
+        <Route
+          path="/"
+          exact
+          render={() => (
+            <div>
+              <Nav
+                startSearch={e => this.startSearch(e)}
+                searchStatus={this.state.beginSearch}
+              />
+              <Splash
+                seeMap={e => this.toggleMap(e)}
+                mapViewStatus={this.state.map}
+                startSearch={e => this.startSearch(e)}
+              />
+            </div>
+          )}
+        />
+        <Route
+          path="/search"
+          exact
+          render={() => (
+            <div>
+              <Nav
+                startSearch={e => this.startSearch(e)}
+                searchStatus={this.state.beginSearch}
+              />
+              {search}
+            </div>
+          )}
+        />
+        <Route
+          path="/searchresults"
+          exact
+          render={() => (
+            <div className={classes.display}>
+              <Nav startSearch={e => this.startSearch(e)} />
+              <NavLink to="/search">
+                <button
+                  id="searchToggle"
+                  className="waves-effect waves-dark btn-small   blue-grey"
+                  type="click"
+                  onClick={e => this.handleNewSearch(e)}
+                >
+                  New Search
+                </button>
+              </NavLink>
+              {resultsDisplay}
+              {detailsDisplay}
+            </div>
+          )}
+        />
+      </Switch>
+    );
   }
 }
 

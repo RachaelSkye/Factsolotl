@@ -14,7 +14,7 @@ A query will return lead contamination information about all sampling events mat
 
 A visual representation of the number of schools with lead contamination greater than the EPA's action level, per county, is shown on a google geo chart of California. 
 
-This app was made with JavaScript and React, and will be built for mobile with React Native.
+Uses CA.gov API found here: https://data.ca.gov/dataset/drinking-water-results-of-lead-sampling-of-drinking-water-in-california-schools/resource/5ebb2d68-1186-4937-acaf-8564c9a01ed6
 
 
 ## Known Issues
