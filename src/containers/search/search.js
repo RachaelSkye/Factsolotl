@@ -6,7 +6,6 @@ import Details from "../../components/Details/Details";
 import "./Search.module.css";
 import * as classes from "./Search.module.css";
 import "./Search.module.css";
-
 import Splash from "../Splash/Splash";
 import Nav from "../navbar/navbar";
 
@@ -123,13 +122,6 @@ class Search extends Component {
     });
   }
 
-  updateQuery(newQuery, state) {
-    this.setState({
-      ...state,
-      query: newQuery
-    });
-  }
-
   onToggleQuery(state) {
     this.setState({
       ...state,
@@ -141,6 +133,20 @@ class Search extends Component {
     this.setState({
       ...state,
       query3: e.target.value
+    });
+  }
+
+  handleNameFilter(e, state) {
+    this.setState({
+      ...state,
+      query1: e.target.value
+    });
+  }
+
+  handleCountyFilter(e, state) {
+    this.setState({
+      ...state,
+      query2: e.target.value
     });
   }
 
@@ -261,7 +267,7 @@ class Search extends Component {
                     type="text"
                     placeholder="Search..."
                     value={this.state.query1}
-                    onChange={e => this.setState({ query1: e.target.value })}
+                    onChange={e => this.handleNameFilter(e)}
                   />
                   <label>Enter school name</label>
 
@@ -269,7 +275,7 @@ class Search extends Component {
                     type="text"
                     placeholder="Search..."
                     value={this.state.query2}
-                    onChange={e => this.setState({ query2: e.target.value })}
+                    onChange={e => this.handleCountyFilter(e)}
                   />
                   <label>Enter county</label>
                 </div>
