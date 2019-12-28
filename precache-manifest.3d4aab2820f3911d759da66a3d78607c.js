@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "b17290c3766a669ab81c6c65b3f0cb89",
+    "revision": "ceb48a6a046b30c6d83f927cba7c5c6a",
     "url": "/Factsolotl/index.html"
   },
   {
-    "revision": "09389f9b53c7d7651eb2",
-    "url": "/Factsolotl/static/css/main.0c9e303d.chunk.css"
+    "revision": "2606b925436d2120a324",
+    "url": "/Factsolotl/static/css/main.e0f3aa29.chunk.css"
   },
   {
-    "revision": "c780f2f930540b7ee162",
-    "url": "/Factsolotl/static/js/2.9ea082f2.chunk.js"
+    "revision": "baf825ce1d6df95718d3",
+    "url": "/Factsolotl/static/js/2.18ae98d8.chunk.js"
   },
   {
     "revision": "78ddf5a465591a03b9601ba2ddd63415",
-    "url": "/Factsolotl/static/js/2.9ea082f2.chunk.js.LICENSE"
+    "url": "/Factsolotl/static/js/2.18ae98d8.chunk.js.LICENSE"
   },
   {
-    "revision": "09389f9b53c7d7651eb2",
-    "url": "/Factsolotl/static/js/main.e0cf04b2.chunk.js"
+    "revision": "2606b925436d2120a324",
+    "url": "/Factsolotl/static/js/main.5a1acf3e.chunk.js"
   },
   {
     "revision": "532a84699a3cc3774b4d",
