@@ -9,9 +9,8 @@ const List = (props) => {
     schools = props.schools.map(school => {
       
       return (
-        <div >
+        <div  key={school.id}>
         <Preview
-          key={school.key}
           name={school.school_name}
           district={school.district}
           exceedance={school.action_level_exceedance}
@@ -26,7 +25,7 @@ const List = (props) => {
   } else {
     schools = 
     <div className={'card'}>
-      <h4>Return to search to see a list of sample previews by school here.</h4>
+      <h4>Enter a search to see a list of sample previews by school here.</h4>
     </div>
   }
   return (

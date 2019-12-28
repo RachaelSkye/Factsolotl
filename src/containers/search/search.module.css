@@ -22,7 +22,6 @@ button {
 .clickExpand {
   font-family: 'Fira Sans', sans-serif;
   color: rgb(70, 70, 70);
-
 }
 
 .total {
@@ -66,7 +65,6 @@ button {
     border-right: solid lightgrey 1px;
     border-left: solid lightgrey 1px;
     padding: 10px;
-
   }
 
   #exceedanceTitle {
@@ -76,13 +74,8 @@ button {
   .searchFooter {
     font-family: 'Fira Sans', sans-serif;
     font-size: 10px;
-
   }
-
 }
-
-
-
 
 .select {
   width: 110px;

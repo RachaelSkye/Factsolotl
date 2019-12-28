@@ -17,8 +17,10 @@ const preview = (props) => {
     <div className="row">
         <div id='previewCard' className="card">
             <div className="details">
-              <h4>{props.name}</h4>
+              <h4 className='schoolPreviewName'>{props.name}</h4>
               <label>  {props.sampleLocation}</label>
+              <p>{props.id}</p>
+
             <div className="Info">
                 <button
                   onClick={props.clicked}

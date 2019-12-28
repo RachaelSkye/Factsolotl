@@ -7,7 +7,6 @@ import "./Search.module.css";
 import * as classes from "./Search.module.css";
 import "./Search.module.css";
 import Splash from "../Splash/Splash";
-import Nav from "../navbar/navbar";
 import { Route, NavLink, Switch, Redirect } from "react-router-dom";
 
 class Search extends Component {
@@ -22,7 +21,6 @@ class Search extends Component {
     exceedance: false,
     exceedanceCheck: false,
     total: 0,
-    // map: false
   };
 
   queryHandler(state) {
@@ -55,8 +53,7 @@ class Search extends Component {
           const newSchool = schools.map(school => {
             return {
               ...school,
-              id: v4(),
-              key: v4()
+              id: v4()
             };
           });
           this.setState({
@@ -82,8 +79,7 @@ class Search extends Component {
           const newSchool = schools.map(school => {
             return {
               ...school,
-              id: v4(),
-              key: v4()
+              id: v4()
             };
           });
           this.setState({
@@ -154,14 +150,6 @@ class Search extends Component {
       total: 0
     });
   }
-
-  // toggleMap(state) {
-  //   this.setState({
-  //     ...state,
-  //     map: !this.state.map
-  //   });
-  // }
-
 
   render() {
     const toggleExceedanceOn = this.state.exceedance
