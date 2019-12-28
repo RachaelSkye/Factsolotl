@@ -5,22 +5,14 @@ import facts from "../../Assets/pbdw.pdf";
 
 
 const Details = props => {
-  let school = (
-    <div className={"cardDetail"}>
-      <div className="card">
-        <div className="card-image">
-          <h4>Click on a school to see sample details here.</h4>
-        </div>
-      </div>
-    </div>
-  );
+  let school = null
   if (props.loadedSchool) {
     const sampleDate = new Date(props.loadedSchool.sample_date);
     const sampleYear = sampleDate.getFullYear();
     const sampleMonth = sampleDate.getMonth() + 1;
     const sampleDay = sampleDate.getDate();
 
-    school = (
+     school = (
         <div className={classes.cardDetail}>
           <div id='detailInset' className="card">
           <button

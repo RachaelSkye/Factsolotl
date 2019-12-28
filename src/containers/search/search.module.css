@@ -11,6 +11,12 @@ button {
   font-weight: bolder;
   text-shadow: 2px 2px grey;
   box-shadow: 2px 2px grey;
+  cursor: pointer
+}
+
+.toggleOff {
+  margin: 20px;
+  cursor: pointer
 }
 
 .clickExpand {
@@ -39,9 +45,7 @@ button {
 }
 
 
-.toggleOff {
-  margin: 20px;
-}
+
 
 .select {
   width: 110px;

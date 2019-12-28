@@ -21,10 +21,7 @@ class Search extends Component {
     query3: "",
     exceedance: false,
     exceedanceCheck: false,
-    queried: false,
-    detailsSelected: false,
     total: 0,
-    beginSearch: false
     // map: false
   };
 
@@ -44,7 +41,7 @@ class Search extends Component {
       this.state.query2 === "" &&
       this.state.query3 === ""
     ) {
-      alert("Please enter a query.");
+      alert("Please select a year or enter an input in one of the search fields.");
     } else if (!this.state.exceedance) {
       axios
         .get(baseQuery)
@@ -110,7 +107,6 @@ class Search extends Component {
         this.setState({
           ...state,
           loadedSchool: currentSchool[i],
-          detailsSelected: true
         });
       }
     }
@@ -119,7 +115,7 @@ class Search extends Component {
   toggleDetails(state) {
     this.setState({
       ...state,
-      detailsSelected: !this.state.detailsSelected
+      loadedSchool: null
     });
   }
 
@@ -151,12 +147,6 @@ class Search extends Component {
     });
   }
 
-  toggleSearch(state) {
-    this.setState({
-      ...state,
-      queried: !this.state.queried
-    });
-  }
 
   handleNewSearch(state) {
     this.setState({
@@ -172,12 +162,6 @@ class Search extends Component {
   //   });
   // }
 
-  startSearch(state) {
-    this.setState({
-      ...state,
-      beginSearch: !this.state.beginSearch
-    });
-  }
 
   render() {
     const toggleExceedanceOn = this.state.exceedance
@@ -347,10 +331,6 @@ class Search extends Component {
           exact
           render={() => (
             <div>
-              <Nav
-                startSearch={e => this.startSearch(e)}
-                searchStatus={this.state.beginSearch}
-              />
               <Splash
                 seeMap={e => this.toggleMap(e)}
                 mapViewStatus={this.state.map}
@@ -364,10 +344,6 @@ class Search extends Component {
           exact
           render={() => (
             <div>
-              <Nav
-                startSearch={e => this.startSearch(e)}
-                searchStatus={this.state.beginSearch}
-              />
               {search}
             </div>
           )}
@@ -377,7 +353,6 @@ class Search extends Component {
           exact
           render={() => (
             <div className={classes.display}>
-              <Nav startSearch={e => this.startSearch(e)} />
               <NavLink to="/search">
                 <button
                   id="searchToggle"

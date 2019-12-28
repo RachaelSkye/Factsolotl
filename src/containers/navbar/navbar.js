@@ -11,9 +11,7 @@ const Nav = (props) => {
     <button
           id='home'
           type="click"
-          className="btn-floating btn-large waves-effect waves-light transparent"
-          onClick={e => props.startSearch(e)}
-        >
+          className="btn-floating btn-large waves-effect waves-light transparent">
          <i id='homeIcon'className="material-icons">home</i>
         </button>
   );
