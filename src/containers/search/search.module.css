@@ -41,6 +41,43 @@ button {
 
 .searchFooter {
   font-family: 'Fira Sans', sans-serif;
+}
+
+@media only screen and (max-width: 900px) {
+  .searchHeader {
+    background: rgba(255,255,255,0.2);
+    border-right: solid grey 1px;
+    border-left: solid grey 1px;
+    padding: 15px;
+    font-family: 'Fira Sans', sans-serif;
+    color: rgb(70, 70, 70);
+    width: 100%;
+  }
+
+  .searchTitle {
+    font-size: 30px;
+    font-weight: bolder;
+  }
+  .exceedanceToggle {
+    margin-top: 15px;
+  }
+
+  .toggleBG {
+    border-right: solid lightgrey 1px;
+    border-left: solid lightgrey 1px;
+    padding: 10px;
+
+  }
+
+  #exceedanceTitle {
+    font-size: 10px;
+  }
+
+  .searchFooter {
+    font-family: 'Fira Sans', sans-serif;
+    font-size: 10px;
+
+  }
 
 }
 

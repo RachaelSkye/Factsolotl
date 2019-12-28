@@ -209,7 +209,7 @@ class Search extends Component {
     const search = (
       <div>
         <div className={classes.searchHeader}>
-          <h3>Search by school name and/or county.</h3>
+          <h3 className={classes.searchTitle}>Search by school name and/or county.</h3>
 
           <div className="row">
             <div id="col1" className="col-md-6">
@@ -231,7 +231,7 @@ class Search extends Component {
         <div className="footer">
           <div className="card white">
             <div className="card-content grey-text">
-              <span className="card-title">{title}</span>
+              <span className={classes.exceedanceTitle}>{title}</span>
               <form
                 onSubmit={e => {
                   e.preventDefault();
@@ -272,10 +272,11 @@ class Search extends Component {
                   <label>Enter county</label>
                 </div>
                 <div className="card-action">
-                  <label>
-                    <span className={"exceedanceToggle"}>
+                  <label className={classes.toggleBG}>
+                    <span>
                       Filter by exceedance:{" "}
                     </span>
+                    <div className={classes.exceedanceToggle}>
                     <span
                       onClick={event => this.onToggleQuery(event)}
                       className={toggleExceedanceOn}
@@ -288,6 +289,7 @@ class Search extends Component {
                     >
                       Off
                     </span>
+                    </div>
                   </label>
 
                   <button
