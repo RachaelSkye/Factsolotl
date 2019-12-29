@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import axios from "axios";
 import { v4 } from "uuid";
 import List from "../List/List";
@@ -9,7 +9,7 @@ import "./Search.module.css";
 import Splash from "../Splash/Splash";
 import { Route, NavLink, Switch, Redirect } from "react-router-dom";
 
-class Search extends Component {
+class Search extends React.Component {
   state = {
     schools: [],
     selectedschoolId: "",
@@ -77,11 +77,13 @@ class Search extends Component {
             alert("No schools matched this search");
           }
           const newSchool = schools.map(school => {
+
             return {
               ...school,
               id: v4()
             };
           });
+
           this.setState({
             ...state,
             schools: newSchool,
@@ -106,6 +108,40 @@ class Search extends Component {
         });
       }
     }
+  }
+
+  mapDataHandler(state) {
+    let baseQuery =
+    "https://data.ca.gov/api/3/action/datastore_search?resource_id=5ebb2d68-1186-4937-acaf-8564c9a01ed6&q=" +
+    'yes' +
+    ", " +
+    '2019';
+
+    axios
+    .get(baseQuery)
+    .then(response => {
+      let schools = response.data.result.records;
+
+      if (schools.length === 0) {
+        alert("No schools matched this search");
+      }
+      const newSchool = schools.map(school => {
+        return {
+          ...school,
+          id: v4()
+        };
+      });
+      this.setState({
+        ...state,
+        schools: newSchool,
+      });
+    })
+    .catch(error => {
+      this.setState({ error: true });
+    });
+
+
+
   }
 
   toggleDetails(state) {
@@ -147,7 +183,8 @@ class Search extends Component {
   handleNewSearch(state) {
     this.setState({
       ...state,
-      total: 0
+      total: 0,
+      loadedSchool: null
     });
   }
 
@@ -190,6 +227,7 @@ class Search extends Component {
           loadedSchool={this.state.loadedSchool}
           queried={this.state.queried}
           toggleDetails={this.state.detailsSelected}
+          mapData={this.mapDataHandler}
         />
       </div>
     );
@@ -292,7 +330,7 @@ class Search extends Component {
               {this.state.total > 0 && (
                 <Redirect
                   to={{
-                    pathname: "/searchresults"
+                    pathname: "/Factsolotl/searchresults"
                   }}
                 />
               )}
@@ -317,7 +355,7 @@ class Search extends Component {
     return (
       <Switch>
         <Route
-          path="/"
+          path="/Factsolotl/"
           exact
           render={() => (
             <div>
@@ -330,7 +368,7 @@ class Search extends Component {
           )}
         />
         <Route
-          path="/search"
+          path="/Factsolotl/search"
           exact
           render={() => (
             <div>
@@ -339,11 +377,11 @@ class Search extends Component {
           )}
         />
         <Route
-          path="/searchresults"
+          path="/Factsolotl/searchresults"
           exact
           render={() => (
             <div className={classes.display}>
-              <NavLink to="/search">
+              <NavLink to="/Factsolotl/search">
                 <button
                   id="searchToggle"
                   className="waves-effect waves-dark btn-small   blue-grey"

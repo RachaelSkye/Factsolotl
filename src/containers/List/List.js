@@ -1,6 +1,7 @@
 import React from "react";
 import Preview from "../../components/Preview/Preview";
 import * as classes from "./List.module.css";
+import Map from '../../components/Map/Map'
 
 
 const List = (props) => {
@@ -9,7 +10,13 @@ const List = (props) => {
     schools = props.schools.map(school => {
       
       return (
-        <div  key={school.id}>
+        <div key={school.id}>
+          <Map
+            county={school.county}
+            mapData={props.mapData}
+          />
+
+        
         <Preview
           name={school.school_name}
           district={school.district}
