@@ -17,10 +17,6 @@ A visual representation of the number of schools with lead contamination greater
 Uses CA.gov API found here: https://data.ca.gov/dataset/drinking-water-results-of-lead-sampling-of-drinking-water-in-california-schools/resource/5ebb2d68-1186-4937-acaf-8564c9a01ed6
 
 
-## Known Issues
-
-* Routing isn't implemented as of 12/18/19. Views are rendered with state. Will update as the app is refactored.
-
 
 ## Setup/Installation Requirements
 

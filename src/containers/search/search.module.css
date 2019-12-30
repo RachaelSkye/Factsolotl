@@ -14,6 +14,10 @@ button {
   cursor: pointer
 }
 
+.exceedanceToggle {
+  margin-top: 15px;
+}
+
 .toggleOff {
   margin: 20px;
   cursor: pointer
@@ -57,9 +61,7 @@ button {
     font-size: 30px;
     font-weight: bolder;
   }
-  .exceedanceToggle {
-    margin-top: 15px;
-  }
+
 
   .toggleBG {
     border-right: solid lightgrey 1px;
