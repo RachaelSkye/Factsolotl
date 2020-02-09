@@ -436,7 +436,7 @@ class Search extends React.Component {
               {this.state.total > 0 && (
                 <Redirect
                   to={{
-                    pathname: "/searchresults"
+                    pathname: "/Factsolotl/searchresults"
                   }}
                 />
               )}
@@ -448,7 +448,7 @@ class Search extends React.Component {
     return (
       <Switch>
         <Route
-          path="/"
+          path="/Factsolotl/"
           exact
           render={() => (
             <div>
@@ -460,13 +460,13 @@ class Search extends React.Component {
             </div>
           )}
         />
-        <Route path="/search" exact render={() => <div>{search}</div>} />
+        <Route path="/Factsolotl/search" exact render={() => <div>{search}</div>} />
         <Route
-          path="/searchresults"
+          path="/Factsolotl/searchresults"
           exact
           render={() => (
             <div className={classes.display}>
-              <NavLink to="/search">
+              <NavLink to="/Factsolotl/search">
                 <button
                   id="searchToggle"
                   className="waves-effect waves-dark btn-small   blue-grey"

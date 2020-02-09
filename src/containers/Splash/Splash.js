@@ -14,7 +14,7 @@ const Splash = props => {
           Use Factsolotl to search for lead results from tap water samples taken
           at public schools across California from 2017 to 2019.
         </h4>
-        <NavLink to="/search">
+        <NavLink to="/Factsolotl/search">
           <button  className="btn waves-effect waves-light green">Begin Search</button>
         </NavLink>
       </div>
