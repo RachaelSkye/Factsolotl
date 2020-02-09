@@ -1,7 +1,6 @@
 .list {
   height:30vmax;
   width:100%;
-  border:10px ridge #ccc;
   overflow-y:auto;
   overflow-x: hidden;
   position: relative;

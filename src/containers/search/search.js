@@ -13,7 +13,6 @@ class Search extends React.Component {
   state = {
     schools: [],
     selectedschoolId: "",
-    error: false,
     loadedSchool: null,
     query1: "",
     query2: "",
@@ -21,9 +20,13 @@ class Search extends React.Component {
     exceedance: false,
     exceedanceCheck: false,
     total: 0,
+    info: false,
+    loading: false
   };
 
   queryHandler(state) {
+    this.setState({ loading: true });
+
     let baseQuery =
       "https://data.ca.gov/api/3/action/datastore_search?resource_id=5ebb2d68-1186-4937-acaf-8564c9a01ed6&q=" +
       this.state.query1 +
@@ -39,11 +42,14 @@ class Search extends React.Component {
       this.state.query2 === "" &&
       this.state.query3 === ""
     ) {
-      alert("Please select a year or enter an input in one of the search fields.");
+      alert(
+        "Please select a year or enter an input in one of the search fields."
+      );
     } else if (!this.state.exceedance) {
       axios
         .get(baseQuery)
         .then(response => {
+          this.setState({ loading: false });
           let schools = response.data.result.records;
           const total = response.data.result.total;
 
@@ -57,19 +63,22 @@ class Search extends React.Component {
             };
           });
           this.setState({
-            ...state,
             schools: newSchool,
             queried: true,
             total: total
           });
         })
         .catch(error => {
-          this.setState({ error: true });
+          console.log(error);
+          this.setState({ loading: false });
         });
     } else if (this.state.exceedance) {
+      this.setState({ loading: true });
+
       axios
         .get(exceedanceQuery)
         .then(response => {
+          this.setState({ loading: false });
           let schools = response.data.result.records;
           const total = response.data.result.total;
 
@@ -77,7 +86,6 @@ class Search extends React.Component {
             alert("No schools matched this search");
           }
           const newSchool = schools.map(school => {
-
             return {
               ...school,
               id: v4()
@@ -85,14 +93,14 @@ class Search extends React.Component {
           });
 
           this.setState({
-            ...state,
             schools: newSchool,
             queried: true,
             total: total
           });
         })
         .catch(error => {
-          this.setState({ error: true });
+          console.log(error);
+          this.setState({ loading: false });
         });
     }
   }
@@ -103,89 +111,53 @@ class Search extends React.Component {
     for (let i = 0; i < currentSchool.length; i++) {
       if (currentSchool[i].id === id) {
         this.setState({
-          ...state,
-          loadedSchool: currentSchool[i],
+          loadedSchool: currentSchool[i]
         });
       }
     }
   }
 
-  mapDataHandler(state) {
-    let baseQuery =
-    "https://data.ca.gov/api/3/action/datastore_search?resource_id=5ebb2d68-1186-4937-acaf-8564c9a01ed6&q=" +
-    'yes' +
-    ", " +
-    '2019';
-
-    axios
-    .get(baseQuery)
-    .then(response => {
-      let schools = response.data.result.records;
-
-      if (schools.length === 0) {
-        alert("No schools matched this search");
-      }
-      const newSchool = schools.map(school => {
-        return {
-          ...school,
-          id: v4()
-        };
-      });
-      this.setState({
-        ...state,
-        schools: newSchool,
-      });
-    })
-    .catch(error => {
-      this.setState({ error: true });
-    });
-
-
-
-  }
-
   toggleDetails(state) {
     this.setState({
-      ...state,
       loadedSchool: null
     });
   }
 
   onToggleQuery(state) {
     this.setState({
-      ...state,
       exceedance: !this.state.exceedance
     });
   }
 
   handleYearFilter(e, state) {
     this.setState({
-      ...state,
       query3: e.target.value
     });
   }
 
   handleNameFilter(e, state) {
     this.setState({
-      ...state,
       query1: e.target.value
     });
   }
 
   handleCountyFilter(e, state) {
     this.setState({
-      ...state,
       query2: e.target.value
     });
   }
 
-
   handleNewSearch(state) {
     this.setState({
-      ...state,
       total: 0,
       loadedSchool: null
     });
+  }
+  openInfoHandler() {
+    this.setState({ info: true });
+  }
+  closeInfoHandler() {
+    this.setState({ info: false });
   }
 
   render() {
@@ -199,13 +171,82 @@ class Search extends React.Component {
       ? "Only show schools with an exceedance"
       : "Search all schools";
 
-    const detailsDisplay = (
-      <div className={classes.detailBox}>
-        <Details
-          id={this.state.selectedSchoolId}
-          loadedSchool={this.state.loadedSchool}
-          closeDetails={e => this.toggleDetails(e)}
-        />
+    const detailsDisplay = this.state.loadedSchool && (
+      <div className={classes.modal}>
+        <div className={classes.detailBox}>
+          <Details
+            id={this.state.selectedSchoolId}
+            loadedSchool={this.state.loadedSchool}
+            closeDetails={e => this.toggleDetails(e)}
+          />
+        </div>
+      </div>
+    );
+
+    const info = this.state.info && (
+      <div className={classes.modal}>
+        <div className={classes.detailBox}>
+          <div className={classes.infoBox}>
+            <button
+              className="btn-floating btn-sm waves-effect waves-light grey"
+              onClick={e => this.closeInfoHandler(e)}
+            >
+              <i className="material-icons">close</i>
+            </button>
+            <h5>What is an exceedance?</h5>
+            <p>
+              {" "}
+              "Systems compare sample results from homes to EPA’s action level
+              of 0.015 mg/L (15 ppb). Exceeding the action level is not a
+              violation. Violations can be assessed if a system does not perform
+              certain required actions (e.g., public education or lead service
+              line replacement) after the action level is exceeded. Other
+              violations may also be assessed under the rule. For example, if
+              samples are collected improperly, samples are not reported, or if
+              treatment is done incorrectly."
+              <br />
+              <label>-The Lead and Copper rule</label>
+            </p>
+
+            <p>Understanding the EPA’s lead and copper rule:</p>
+            <ul>
+              <li>
+                <a
+                  href="https://www.epa.gov/sites/production/files/2019-10/documents/lcr101_factsheet_10.9.19.final_.2.pdf"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  A quick guide.
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://nepis.epa.gov/Exe/ZyPDF.cgi?Dockey=60001N8P.txt"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  Dig a little deeper.
+                </a>
+              </li>
+            </ul>
+            <hr />
+            <h5>Find out more about the data that powers this app:</h5>
+            <p>
+              {" "}
+              "The Division of Drinking Water (DDW), in collaboration with the
+              California Department of Education, has taken the initiative to
+              begin testing for lead in drinking water at all public K-12
+              schools."
+            </p>
+            <a
+              href="https://data.ca.gov/dataset/drinking-water-results-of-lead-sampling-of-drinking-water-in-california-schools"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              CA.gov Open Data Portal
+            </a>
+          </div>
+        </div>
       </div>
     );
 
@@ -227,15 +268,89 @@ class Search extends React.Component {
           loadedSchool={this.state.loadedSchool}
           queried={this.state.queried}
           toggleDetails={this.state.detailsSelected}
-          mapData={this.mapDataHandler}
         />
       </div>
     );
 
+    const spinner = (
+      <div className={classes.spinner}>
+        <div className="preloader-wrapper small active">
+          <div className="spinner-layer spinner-blue">
+            <div className="circle-clipper left">
+              <div className="circle"></div>
+            </div>
+            <div className="gap-patch">
+              <div className="circle"></div>
+            </div>
+            <div className="circle-clipper right">
+              <div className="circle"></div>
+            </div>
+          </div>
+
+          <div className="spinner-layer spinner-red">
+            <div className="circle-clipper left">
+              <div className="circle"></div>
+            </div>
+            <div className="gap-patch">
+              <div className="circle"></div>
+            </div>
+            <div className="circle-clipper right">
+              <div className="circle"></div>
+            </div>
+          </div>
+
+          <div className="spinner-layer spinner-yellow">
+            <div className="circle-clipper left">
+              <div className="circle"></div>
+            </div>
+            <div className="gap-patch">
+              <div className="circle"></div>
+            </div>
+            <div className="circle-clipper right">
+              <div className="circle"></div>
+            </div>
+          </div>
+
+          <div className="spinner-layer spinner-green">
+            <div className="circle-clipper left">
+              <div className="circle"></div>
+            </div>
+            <div className="gap-patch">
+              <div className="circle"></div>
+            </div>
+            <div className="circle-clipper right">
+              <div className="circle"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+
+    const searchButton = (
+      <button
+        id="search"
+        className="btn waves-effect waves-light green"
+        type="submit"
+      >
+        <i className="large material-icons prefix">search</i>
+      </button>
+    );
+    const searchLoading = this.state.loading ? spinner : searchButton;
     const search = (
       <div>
+        {info}
         <div className={classes.searchHeader}>
-          <h3 className={classes.searchTitle}>Search by school name and/or county.</h3>
+          <button
+            id="infoIcon"
+            type="click"
+            onClick={e => this.openInfoHandler(e)}
+            className="btn-floating btn-sm waves-effect waves-light transparent"
+          >
+            <i className="material-icons">info</i>
+          </button>
+          <h3 className={classes.searchTitle}>
+            Search by school name and/or county.
+          </h3>
 
           <div className="row">
             <div id="col1" className="col-md-6">
@@ -299,54 +414,32 @@ class Search extends React.Component {
                 </div>
                 <div className="card-action">
                   <label className={classes.toggleBG}>
-                    <span>
-                      Filter by exceedance:{" "}
-                    </span>
+                    <span>Filter by exceedance: </span>
                     <div className={classes.exceedanceToggle}>
-                    <span
-                      onClick={event => this.onToggleQuery(event)}
-                      className={toggleExceedanceOn}
-                    >
-                      On
-                    </span>
-                    <span
-                      onClick={event => this.onToggleQuery(event)}
-                      className={toggleExceedanceOff}
-                    >
-                      Off
-                    </span>
+                      <span
+                        onClick={event => this.onToggleQuery(event)}
+                        className={toggleExceedanceOn}
+                      >
+                        On
+                      </span>
+                      <span
+                        onClick={event => this.onToggleQuery(event)}
+                        className={toggleExceedanceOff}
+                      >
+                        Off
+                      </span>
                     </div>
                   </label>
-
-                  <button
-                    id="search"
-                    className="btn waves-effect waves-light green"
-                    type="submit"
-                  >
-                    <i className="large material-icons prefix">search</i>
-                  </button>
+                  {searchLoading}
                 </div>
               </form>
               {this.state.total > 0 && (
                 <Redirect
                   to={{
-                    pathname: "/Factsolotl/searchresults"
+                    pathname: "/searchresults"
                   }}
                 />
               )}
-              <label>
-                <h6 className={classes.searchFooter}>
-                  Systems compare sample results from homes to EPA’s action
-                  level of 0.015 mg/L (15 ppb). Exceeding the action level is
-                  not a violation. Violations can be assessed if a system does
-                  not perform certain required actions (e.g., public education
-                  or lead service line replacement) after the action level is
-                  exceeded. Other violations may also be assessed under the
-                  rule. For example, if samples are collected improperly,
-                  samples are not reported, or if treatment is done incorrectly.
-                </h6>
-              </label>
-              <label> -The EPA Lead and Copper rule</label>
             </div>
           </div>
         </div>
@@ -355,7 +448,7 @@ class Search extends React.Component {
     return (
       <Switch>
         <Route
-          path="/Factsolotl/"
+          path="/"
           exact
           render={() => (
             <div>
@@ -367,21 +460,13 @@ class Search extends React.Component {
             </div>
           )}
         />
+        <Route path="/search" exact render={() => <div>{search}</div>} />
         <Route
-          path="/Factsolotl/search"
-          exact
-          render={() => (
-            <div>
-              {search}
-            </div>
-          )}
-        />
-        <Route
-          path="/Factsolotl/searchresults"
+          path="/searchresults"
           exact
           render={() => (
             <div className={classes.display}>
-              <NavLink to="/Factsolotl/search">
+              <NavLink to="/search">
                 <button
                   id="searchToggle"
                   className="waves-effect waves-dark btn-small   blue-grey"

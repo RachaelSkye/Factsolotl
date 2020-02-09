@@ -70,8 +70,6 @@ class Map extends React.Component {
       ["Yuba County", 0]
     ];
 
-    let mapData = this.props.mapData
-
     const options = {
       region: "US-CA",
       displayMode: "markers",
@@ -94,11 +92,6 @@ class Map extends React.Component {
             options={options}
             mapsApiKey="AIzaSyDL0sPhoIQ-w6JtRXkZiIwc2izy2m26cPE"
           />
-        
-          {/* <button type="click" className="btn" onClick={() => this.mapData()}>
-           set query
-          </button> */}
-       
         </div>
       </div>
     );

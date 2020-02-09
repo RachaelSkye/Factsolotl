@@ -19,7 +19,7 @@ const Nav = (props) => {
     return (
       <div className={classes.nav}>
         <Logo />
-        <NavLink to='/Factsolotl/' exact>
+        <NavLink to='/' exact>
         {home}
         </NavLink>
        

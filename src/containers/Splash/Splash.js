@@ -4,8 +4,6 @@ import "./Splash.module.css";
 import Map from "../../components/Map/Map";
 import { NavLink } from "react-router-dom";
 
-// import DontPanic from "../DontPanic/DontPanic";
-
 const Splash = props => {
   return (
     <div className={classes.splash}>
@@ -16,7 +14,7 @@ const Splash = props => {
           Use Factsolotl to search for lead results from tap water samples taken
           at public schools across California from 2017 to 2019.
         </h4>
-        <NavLink to="/Factsolotl/search">
+        <NavLink to="/search">
           <button  className="btn waves-effect waves-light green">Begin Search</button>
         </NavLink>
       </div>
