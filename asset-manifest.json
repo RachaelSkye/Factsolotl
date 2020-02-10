@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/Factsolotl/static/css/main.054cd642.chunk.css",
-    "main.js": "/Factsolotl/static/js/main.929b6262.chunk.js",
-    "main.js.map": "/Factsolotl/static/js/main.929b6262.chunk.js.map",
+    "main.js": "/Factsolotl/static/js/main.21d8b35b.chunk.js",
+    "main.js.map": "/Factsolotl/static/js/main.21d8b35b.chunk.js.map",
     "runtime-main.js": "/Factsolotl/static/js/runtime-main.8dbba778.js",
     "runtime-main.js.map": "/Factsolotl/static/js/runtime-main.8dbba778.js.map",
     "static/js/2.969f7316.chunk.js": "/Factsolotl/static/js/2.969f7316.chunk.js",
     "static/js/2.969f7316.chunk.js.map": "/Factsolotl/static/js/2.969f7316.chunk.js.map",
     "index.html": "/Factsolotl/index.html",
-    "precache-manifest.9eca052632000889b0af6a325920a92d.js": "/Factsolotl/precache-manifest.9eca052632000889b0af6a325920a92d.js",
+    "precache-manifest.a260229992c1d318364efe1337f28756.js": "/Factsolotl/precache-manifest.a260229992c1d318364efe1337f28756.js",
     "service-worker.js": "/Factsolotl/service-worker.js",
     "static/css/main.054cd642.chunk.css.map": "/Factsolotl/static/css/main.054cd642.chunk.css.map",
     "static/js/2.969f7316.chunk.js.LICENSE": "/Factsolotl/static/js/2.969f7316.chunk.js.LICENSE",
@@ -20,6 +20,6 @@
     "static/js/runtime-main.8dbba778.js",
     "static/js/2.969f7316.chunk.js",
     "static/css/main.054cd642.chunk.css",
-    "static/js/main.929b6262.chunk.js"
+    "static/js/main.21d8b35b.chunk.js"
   ]
 }

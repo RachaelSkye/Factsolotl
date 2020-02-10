@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "e3c9d3e86073f94a9ef981197c99ec48",
+    "revision": "a004e5a3997dc606749c4e2714389a03",
     "url": "/Factsolotl/index.html"
   },
   {
-    "revision": "c33c00332727b4745984",
+    "revision": "e37fd1c1b48626faee5a",
     "url": "/Factsolotl/static/css/main.054cd642.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/Factsolotl/static/js/2.969f7316.chunk.js.LICENSE"
   },
   {
-    "revision": "c33c00332727b4745984",
-    "url": "/Factsolotl/static/js/main.929b6262.chunk.js"
+    "revision": "e37fd1c1b48626faee5a",
+    "url": "/Factsolotl/static/js/main.21d8b35b.chunk.js"
   },
   {
     "revision": "532a84699a3cc3774b4d",
