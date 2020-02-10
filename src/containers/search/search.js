@@ -42,6 +42,7 @@ class Search extends React.Component {
       this.state.query2 === "" &&
       this.state.query3 === ""
     ) {
+      this.setState({ loading: false });
       alert(
         "Please select a year or enter an input in one of the search fields."
       );
@@ -54,6 +55,7 @@ class Search extends React.Component {
           const total = response.data.result.total;
 
           if (schools.length === 0) {
+            this.setState({ loading: false });
             alert("No schools matched this search");
           }
           const newSchool = schools.map(school => {
@@ -69,8 +71,10 @@ class Search extends React.Component {
           });
         })
         .catch(error => {
-          console.log(error);
           this.setState({ loading: false });
+          alert('Something went wrong!')
+          console.log(error);
+          
         });
     } else if (this.state.exceedance) {
       this.setState({ loading: true });
@@ -83,6 +87,7 @@ class Search extends React.Component {
           const total = response.data.result.total;
 
           if (schools.length === 0) {
+            this.setState({ loading: false });
             alert("No schools matched this search");
           }
           const newSchool = schools.map(school => {
@@ -99,8 +104,9 @@ class Search extends React.Component {
           });
         })
         .catch(error => {
-          console.log(error);
           this.setState({ loading: false });
+          alert('Something went wrong!')
+          console.log(error);
         });
     }
   }
