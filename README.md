@@ -27,7 +27,7 @@ Uses CA.gov API found here: https://data.ca.gov/dataset/drinking-water-results-o
   - npm i
   - npm start
 
-* View the deployed Factsolotl [here](https://rbouissey.github.io/Factsolotl/).
+* View the deployed Factsolotl [here](https://rachaelskye.github.io/Factsolotl/).
 
 
 ## Component Flow Chart
